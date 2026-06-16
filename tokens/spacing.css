@@ -79,3 +79,13 @@
     --dur-slower: 0ms; /* @kind other */
   }
 }
+
+/* ARB-42: a spring that micro-oscillates to rest, where supported. The
+   cubic-bezier --ease-spring above overshoots once but can never settle back (a
+   one-bounce approximation); this linear() curve overshoots (1.08) then damps
+   (1.02 -> 1) to rest. Gated behind @supports so engines without linear() easing
+   keep the cubic-bezier fallback. Applies to the card lift / arrow / clink and the
+   nav pill that use var(--ease-spring). */
+@supports (animation-timing-function: linear(0, 1)) {
+  :root { --ease-spring: linear(0, 0.2, 0.56, 0.9, 1.08, 1.02, 1); }
+}
