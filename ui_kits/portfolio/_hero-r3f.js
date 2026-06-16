@@ -54,7 +54,7 @@ class ComposeBoundary extends React.Component {
 const REDUCED =
   window.matchMedia &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const SMALL = window.matchMedia && window.matchMedia("(max-width: 760px)").matches;
+const SMALL = window.matchMedia && window.matchMedia("(max-width: 919px)").matches;
 const DPR_CAP = Math.min(window.devicePixelRatio || 1, SMALL ? 1.5 : 2);
 // postprocessing 6.x needs WebGL2; without it the compose stage throws at mount.
 const HAS_WEBGL2 = (() => {
@@ -322,17 +322,17 @@ function Driver({ container }) {
     const onResize = () => pump();
 
     // ARB-51: re-cap the device pixel ratio when the viewport class flips (e.g. a
-    // phone loaded in landscape >760px then rotated to portrait was left pinned at
+    // phone loaded in landscape >919px then rotated to portrait was left pinned at
     // DPR 2). setDpr re-applies the pixel ratio in place — no remount. The grid
     // DENSITY (GW/GD baked into the useMemo Float32Array buffers) needs a scene
     // remount to re-tier; that is delegated to ARB-32's lazy-mount/reclaim.
     const onTier = () => {
       const cap = Math.min(window.devicePixelRatio || 1,
-        (window.matchMedia && window.matchMedia("(max-width: 760px)").matches) ? 1.5 : 2);
+        (window.matchMedia && window.matchMedia("(max-width: 919px)").matches) ? 1.5 : 2);
       try { if (setDpr) setDpr(cap); } catch (e) {}
       pump();
     };
-    const mqSmall = window.matchMedia ? window.matchMedia("(max-width: 760px)") : null;
+    const mqSmall = window.matchMedia ? window.matchMedia("(max-width: 919px)") : null;
 
     window.addEventListener("pointermove", onMove, { passive: true });
     container.addEventListener("pointerleave", onLeave);
