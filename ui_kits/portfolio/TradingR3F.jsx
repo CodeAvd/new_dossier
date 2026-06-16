@@ -123,8 +123,13 @@ function TradingR3F() {
               ref={mountRef}
               aria-hidden="true"
             />
+            {/* ARB-95: label the surface for its actual domain — a schematic
+                equity/backtest field (matches the lead copy + the sharpe/track-
+                record stats above). polyKalshi is a cross-market ARB scanner and
+                lives in the case files; borrowing its name for an equity surface
+                read as a domain error to a quant juror. */}
             <span className="av-tradinggl__grid-label">
-              <span className="dot" /> polyKalshi · schematic surface
+              <span className="dot" /> schematic equity surface
             </span>
             <span className="av-tradinggl__axis">depth = lookback · height = pnl (illustrative)</span>
           </div>
