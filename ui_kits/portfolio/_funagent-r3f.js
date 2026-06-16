@@ -808,6 +808,10 @@ function mountFunAgent(container, opts) {
 
 window.AVR3F_FUNAGENT = {
   mountFunAgent,
+  // ARB-28: external trigger for the human approve-gate — same path as a canvas
+  // pointerdown (sets sim.audit.clickReq, consumed by the audit machine). Lets a
+  // real focusable DOM <button> approve the current case for keyboard + SR users.
+  approve: () => { sim.audit.clickReq = true; },
   version: { three: THREE.REVISION, react: React.version },
 };
 window.dispatchEvent(new Event("avr3f-funagent-ready"));

@@ -9,6 +9,14 @@
 function FunAgent() {
   const ref = window.useReveal();
   const mountRef = React.useRef(null);
+  const [announce, setAnnounce] = React.useState("");
+
+  // ARB-28: approve the held case from a REAL focusable control (keyboard + SR),
+  // firing the same human-approve gate as a canvas click, and announce it politely.
+  const approveCase = () => {
+    if (window.AVR3F_FUNAGENT && window.AVR3F_FUNAGENT.approve) window.AVR3F_FUNAGENT.approve();
+    setAnnounce("Case approved — the agent stamps it and files it on the done pile.");
+  };
 
   React.useEffect(() => {
     const node = mountRef.current;
@@ -110,10 +118,38 @@ function FunAgent() {
               ref={mountRef}
               aria-hidden="true"
             />
+            {/* ARB-24: GL-less static fallback — if WebGL/ESM never resolves, the
+                premise (a case, read → approved → filed) still survives. Shown only
+                when the engine flags failure (.av-gl-failed). */}
+            <div className="av-funagent__fallback" aria-hidden="true">
+              <div className="av-funagent__fallback-card">
+                <span className="av-funagent__fallback-check">&#10003;</span>
+                <div>
+                  <strong>case approved</strong>
+                  <span>read &middot; stamped &middot; filed on the done pile</span>
+                </div>
+              </div>
+            </div>
+            {/* ARB-28/74: the one real interaction, made visible + operable. A real
+                <button> (keyboard + screen reader) fires the same approve gate as a
+                canvas click. */}
+            <button type="button" className="av-funagent__approve" onClick={approveCase}>
+              approve a case <kbd>&#9166;</kbd>
+            </button>
             <span className="av-funagent__label">
               <span className="dot" /> qa assistant &middot; auditing
             </span>
           </div>
+          {/* ARB-24: the literal narrative the (aria-hidden) canvas tells, for SR. */}
+          <p className="sr-only">
+            An autonomous QA agent works through a small inbox of case cards: it reads
+            each one, stamps it &ldquo;approved&rdquo;, and files it on a growing done
+            pile, then picks the next &mdash; always quietly busy. The 3D room is a
+            decorative illustration of that loop; use the &ldquo;approve a case&rdquo;
+            button to approve the current case yourself.
+          </p>
+          {/* ARB-28: polite SR feedback for the user-triggered approve. */}
+          <div className="sr-only" role="status" aria-live="polite">{announce}</div>
         </div>
       </div>
     </section>

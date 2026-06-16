@@ -328,6 +328,44 @@ section[id] { scroll-margin-top: 90px; }
 .av-funagent__label .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--sage); box-shadow: 0 0 0 0 color-mix(in srgb, var(--sage) 60%, transparent); animation: pulse 2.4s infinite; }
 @media (prefers-reduced-motion: reduce) { .av-funagent__label .dot { animation: none; } }
 
+/* ARB-28/74: the one real interaction made visible + keyboard/SR-operable — a real
+   <button> chip over the room (was a mouse-only pointerdown on an aria-hidden canvas). */
+.av-funagent__approve {
+  position: absolute; top: 16px; right: 16px; z-index: 3;
+  display: inline-flex; align-items: center; gap: 7px; cursor: pointer;
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.02em; color: var(--terra-700);
+  background: color-mix(in srgb, var(--cream-50) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--terra-600) 32%, transparent);
+  border-radius: var(--radius-pill); padding: 7px 13px;
+  backdrop-filter: blur(6px); box-shadow: var(--shadow-xs);
+  transition: transform var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out);
+}
+.av-funagent__approve:hover { transform: translateY(-1px); background: var(--cream-50); }
+.av-funagent__approve kbd {
+  font: inherit; font-size: 11px; line-height: 1; padding: 2px 5px; border-radius: 5px;
+  background: color-mix(in srgb, var(--terra-600) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--terra-600) 24%, transparent);
+}
+.av-funagent__viz.av-gl-failed .av-funagent__approve { display: none; }
+
+/* ARB-24: GL-less static fallback card — hidden unless the engine flags failure. */
+.av-funagent__fallback { display: none; }
+.av-funagent__viz.av-gl-failed .av-funagent__fallback {
+  display: flex; position: absolute; inset: 0; z-index: 1; align-items: center; justify-content: center;
+}
+.av-funagent__fallback-card {
+  display: inline-flex; align-items: center; gap: 14px; font-family: var(--font-mono);
+  background: var(--cream-100); border: 1px solid color-mix(in srgb, var(--terra-600) 22%, transparent);
+  border-radius: 16px; padding: 18px 22px; box-shadow: var(--shadow-md);
+}
+.av-funagent__fallback-card strong { display: block; font-size: 15px; font-weight: 600; color: var(--terra-700); }
+.av-funagent__fallback-card span { display: block; font-size: 11px; letter-spacing: 0.04em; color: var(--terra-600); margin-top: 3px; }
+.av-funagent__fallback-check {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: 34px; height: 34px; border-radius: 999px; background: var(--sage); color: #fff;
+  font-size: 17px; font-weight: 700;
+}
+
 /* ============================================================
    CONTACT + FOOTER
    ============================================================ */
