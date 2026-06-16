@@ -6,11 +6,9 @@ window.AV_DATA = {
   name: "Grigorii Avdeev",
   wordmark: "avdeev",
   role: "ai & quant engineer",
-  hero: {
-    line: "i build agents that <em>cite</em> their evidence — and trading tools that <em>find</em> the edge.",
-    sub: "file-first. evidence-backed. claims that prove themselves.",
-    tag: "qa brain, builder hands.",
-  },
+  // ARB-76: removed the orphaned `hero` copy block — the live HeroR3F.jsx hardcodes
+  // its own (richer) hero copy and there is no longer a vanilla Hero.jsx consuming this,
+  // so it was a stale, divergent source-of-truth that changed nothing on the shipped page.
   nav: ["work", "trading", "about", "experience", "contact"],
   // TODO(metrics): schematic placeholders — NONE of these are measured yet.
   // Drop in real figures (and restore the units: %, ms, /d) once the evals
