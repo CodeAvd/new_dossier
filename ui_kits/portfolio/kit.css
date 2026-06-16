@@ -393,3 +393,17 @@ section[id] { scroll-margin-top: 90px; }
   .av-clink { background: color-mix(in srgb, var(--text-inverse) 12%, transparent); }
   .av-tl    { background: color-mix(in srgb, var(--accent-tint) 30%, transparent); }
 }
+
+/* ============================================================
+   TYPOGRAPHY POLISH
+   ============================================================ */
+/* ARB-78: tabular + lining figures on the serif numeral slots so digits share
+   advance width and baseline — no column-to-column jitter once real metrics
+   replace the em-dashes in the hero 4-up, trading 3-up and per-project grids.
+   No-op today (slots are dashes); correct the moment real figures land.
+   font-feature-settings is the older-engine fallback for font-variant-numeric. */
+.av-stat__value,
+.av-proj__stat {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum", "lnum";
+}
