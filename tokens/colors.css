@@ -68,6 +68,8 @@
   --holo-500:  #234ba2;
   --holo-top:  #003585;
   --holo-text: #e1f5ff;
+  --holo-cyan: #6fd0ff;  /* ARB-41: lighter, desaturated on-dark cyan for holo text/marks
+                            (saturated --spark #34bfff halates on the dark band) */
 
   /* --- semantic --- */
   --success:      #4fae87;

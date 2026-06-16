@@ -289,7 +289,7 @@
   gap: 8px;
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--spark);
+  color: var(--holo-cyan); /* ARB-41: was --spark (#34bfff) — halated on the dark band */
   pointer-events: none;
 }
 .av-tradinggl__grid-label .dot {
@@ -309,7 +309,7 @@
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--holo-text) 50%, transparent);
+  color: color-mix(in srgb, var(--holo-text) 78%, transparent); /* ARB-41: was 50% — read ghosted (APCA Lc ~37-42) */
   pointer-events: none;
 }
 .av-tradinggl__feet {
