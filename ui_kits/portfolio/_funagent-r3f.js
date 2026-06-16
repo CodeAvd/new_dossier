@@ -780,6 +780,18 @@ function mountFunAgent(container, opts) {
           const hgt = container.clientHeight || 380;
           try { state.setSize(w, hgt); } catch (e) {}
           state.invalidate();
+          // ARB-49: surface the on-brand fallback (incl. the static "case approved" card)
+          // on a mid-session context loss, and self-heal when the context returns.
+          const host = container.closest(".av-funagent__viz") || container.parentElement;
+          const cv = state.gl.domElement;
+          cv.addEventListener("webglcontextlost", (e) => {
+            e.preventDefault();
+            if (host) host.classList.add("av-gl-failed");
+          });
+          cv.addEventListener("webglcontextrestored", () => {
+            if (host) host.classList.remove("av-gl-failed");
+            state.invalidate();
+          });
         },
       },
       h(Driver, { container }),

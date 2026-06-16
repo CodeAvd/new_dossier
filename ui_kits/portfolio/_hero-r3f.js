@@ -415,6 +415,18 @@ function mountHero(container, opts) {
           state.invalidate();
           const host = container.closest(".av-herogl") || container.parentElement;
           if (host) host.classList.remove("av-gl-warming");
+          // ARB-49: a mid-session GL context loss (iOS memory pressure, tab backgrounding)
+          // would otherwise leave a permanently blank canvas. Surface the on-brand fallback
+          // and self-heal (re-warm) when the context returns.
+          const cv = state.gl.domElement;
+          cv.addEventListener("webglcontextlost", (e) => {
+            e.preventDefault();
+            if (host) host.classList.add("av-gl-failed");
+          });
+          cv.addEventListener("webglcontextrestored", () => {
+            if (host) host.classList.remove("av-gl-failed");
+            state.invalidate();
+          });
         },
       },
       h(Driver, { container }),

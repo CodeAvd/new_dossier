@@ -490,6 +490,16 @@ function mountTrading(container, opts) {
           state.invalidate();
           const host = container.closest(".av-tradinggl__viz") || container.parentElement;
           if (host) host.classList.remove("av-gl-warming");
+          // ARB-49: surface the on-brand fallback on a mid-session context loss + self-heal.
+          const cv = state.gl.domElement;
+          cv.addEventListener("webglcontextlost", (e) => {
+            e.preventDefault();
+            if (host) host.classList.add("av-gl-failed");
+          });
+          cv.addEventListener("webglcontextrestored", () => {
+            if (host) host.classList.remove("av-gl-failed");
+            state.invalidate();
+          });
         },
       },
       h(Driver, { container }),
