@@ -211,13 +211,9 @@ button:focus-visible {
 .av-trading__stats .av-stat__unit { color: var(--spark); }
 .av-trading__stats .av-stat__label { color: color-mix(in srgb, var(--holo-text) 65%, transparent); }
 
-.av-trading__panel { position: relative; background: rgba(8,18,40,0.55); border: 1px solid color-mix(in srgb, var(--spark) 26%, transparent); border-radius: var(--radius-xl); padding: 24px; backdrop-filter: blur(8px); box-shadow: 0 30px 70px rgba(0,0,0,0.4); }
-.av-trading__panel-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
-.av-trading__chip { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--spark); }
-.av-trading__chip .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--spark); box-shadow: 0 0 0 0 color-mix(in srgb, var(--spark) 60%, transparent); animation: pulse 2.4s infinite; }
-.av-trading__since { font-family: var(--font-mono); font-size: 11px; color: color-mix(in srgb, var(--holo-text) 55%, transparent); }
-.av-trading__chart { width: 100%; height: 150px; display: block; }
-.av-trading__feed { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+/* ARB-72: pruned the dead vanilla trading-panel CSS (.av-trading__panel / __panel-top /
+   __chip / __since / __chart / __feed). The live R3F path renders .av-tradinggl__* and the
+   .av-sig chips below; the panel system was used only by the non-shipping vanilla build. */
 .av-sig { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 13px; border-radius: var(--radius-sm); background: rgba(225,245,255,0.05); border: 1px solid rgba(225,245,255,0.09); font-family: var(--font-mono); font-size: 12px; }
 .av-sig__t { color: color-mix(in srgb, var(--holo-text) 80%, transparent); }
 .av-sig__s { text-transform: uppercase; font-size: 10px; letter-spacing: 0.08em; padding: 2px 7px; border-radius: 999px; }
