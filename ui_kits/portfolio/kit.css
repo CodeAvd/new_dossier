@@ -407,3 +407,26 @@ section[id] { scroll-margin-top: 90px; }
   font-variant-numeric: tabular-nums lining-nums;
   font-feature-settings: "tnum", "lnum";
 }
+
+/* ARB-58: balance the serif heads (no one-word last line at ~16ch) and set pretty
+   on the body leads/blurbs (no widows/orphans). Only the Urbanist hero had text-wrap
+   before. Progressive enhancement — ignored where unsupported; hyphens:none keeps
+   balance from hyphenating the heads. */
+.av-sec-title,
+.av-proj__title,
+.av-trading__title,
+.av-funagent__title,
+.av-contact__title,
+.av-tl__role h3 {
+  text-wrap: balance;
+  hyphens: none;
+}
+.av-sec-lead,
+.av-herogl__sub,
+.av-trading__lead,
+.av-funagent__lead,
+.av-proj__blurb,
+.av-tl__note,
+.av-contact__blurb {
+  text-wrap: pretty;
+}
