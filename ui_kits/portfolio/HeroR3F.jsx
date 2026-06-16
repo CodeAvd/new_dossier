@@ -63,7 +63,7 @@ function HeroR3F() {
             ship the <span className="ac">proof</span>.
           </h1>
           <p className="av-herogl__sub">
-            // the agent assembles this portfolio in front of you &mdash;
+            <span className="cmt">//</span> the agent assembles this portfolio in front of you &mdash;
             reading each case, citing its source, stamping the verdict. the
             field to the right is its evidence; nothing here is claimed
             without it.
