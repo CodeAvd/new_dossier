@@ -90,6 +90,39 @@ button:focus-visible {
    the fixed header; the JS smooth-scroll path already applies an 80px offset. */
 section[id] { scroll-margin-top: 90px; }
 
+/* ARB-29: below 880px the primary nav is display:none (and out of the a11y tree),
+   so the mobile replacement is a REAL <nav> of section links — a compact bottom
+   progress rail tracking the same scroll-spy active section. Hidden ≥880px. */
+.av-progress {
+  display: flex; justify-content: space-between; align-items: center; gap: 2px;
+  position: fixed; left: 50%; transform: translateX(-50%); z-index: 60;
+  bottom: max(10px, env(safe-area-inset-bottom)); max-width: calc(100vw - 20px);
+  padding: 6px 8px; border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--bg-base) 82%, transparent);
+  backdrop-filter: blur(14px) saturate(1.2);
+  border: 1px solid var(--border-soft); box-shadow: var(--shadow-sm);
+}
+@media (min-width: 880px) { .av-progress { display: none; } }
+.av-progress__item {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  text-decoration: none; color: var(--text-muted);
+  padding: 5px 7px; border-radius: 12px; min-width: 0;
+}
+.av-progress__dot {
+  width: 6px; height: 6px; border-radius: 999px; background: currentColor; opacity: 0.5;
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+}
+.av-progress__label {
+  font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.04em;
+  text-transform: uppercase; white-space: nowrap; line-height: 1;
+}
+.av-progress__item[aria-current="page"] { color: var(--accent); }
+.av-progress__item[aria-current="page"] .av-progress__dot { opacity: 1; transform: scale(1.5); }
+/* dots-only on the narrowest phones so 6 items never crowd (the <a> keeps its
+   aria-label, so each remains an accessible link even without the visible label) */
+@media (max-width: 419px) { .av-progress__label { display: none; } }
+@media (prefers-reduced-motion: reduce) { .av-progress__dot { transition: none; } }
+
 /* ============================================================
    HERO
    ============================================================ */

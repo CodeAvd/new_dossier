@@ -75,6 +75,7 @@ function Header() {
   };
 
   return (
+    <React.Fragment>
     <header className="av-header" data-scrolled={String(scrolled)}>
       <a className="av-logo" href="#top" aria-label="avdeev — back to top" onClick={(e) => go("top", e)}>
         <img src="../../assets/monogram.svg" alt="" />
@@ -100,6 +101,28 @@ function Header() {
         <Button variant="primary" size="sm" onClick={(e) => go("contact", e)}>let's talk</Button>
       </nav>
     </header>
+
+    {/* ARB-29: <880px the primary nav is display:none (and out of the a11y tree),
+        so this is a REAL replacement nav — a compact bottom progress rail of the
+        same section links, tracking the same scroll-spy active section. Each link
+        carries an aria-label so it stays named even when the visible label is
+        hidden on the narrowest phones (dots-only). */}
+    <nav className="av-progress" aria-label="sections">
+      {items.map((it) => (
+        <a
+          key={it.id}
+          href={"#" + it.id}
+          className="av-progress__item"
+          aria-label={it.label}
+          aria-current={active === it.id ? "page" : undefined}
+          onClick={(e) => go(it.id, e)}
+        >
+          <span className="av-progress__dot" aria-hidden="true" />
+          <span className="av-progress__label" aria-hidden="true">{it.label}</span>
+        </a>
+      ))}
+    </nav>
+    </React.Fragment>
   );
 }
 window.Header = Header;
