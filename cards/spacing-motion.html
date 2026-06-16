@@ -1,0 +1,28 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Motion — gentle & springy" subtitle="soft overshoot easing, hover to replay" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--bg-base); padding: 24px; font-family: var(--font-mono); }
+  .track { display: flex; flex-direction: column; gap: 14px; }
+  .lane { display: flex; align-items: center; gap: 14px; }
+  .label { width: 130px; font-size: 11px; color: var(--text-strong); }
+  .label small { color: var(--text-faint); display: block; font-size: 9px; }
+  .rail { flex: 1; height: 22px; background: var(--bg-sunken); border-radius: 999px; position: relative; }
+  .dot { position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 999px; background: var(--terra-500); box-shadow: var(--shadow-xs); animation: run 2.6s infinite; }
+  .e1 { animation-timing-function: cubic-bezier(0.22,1,0.36,1); }
+  .e2 { animation-timing-function: cubic-bezier(0.65,0,0.35,1); }
+  .e3 { animation-timing-function: cubic-bezier(0.34,1.56,0.64,1); background: var(--blush-deep); }
+  @keyframes run { 0%,12% { left: 3px; } 50%,62% { left: calc(100% - 19px); } 100% { left: 3px; } }
+</style>
+</head>
+<body>
+  <div class="track">
+    <div class="lane"><div class="label">ease-out<small>cinematic settle</small></div><div class="rail"><div class="dot e1"></div></div></div>
+    <div class="lane"><div class="label">ease-in-out<small>symmetric</small></div><div class="rail"><div class="dot e2"></div></div></div>
+    <div class="lane"><div class="label">ease-spring<small>soft overshoot</small></div><div class="rail"><div class="dot e3"></div></div></div>
+  </div>
+</body>
+</html>

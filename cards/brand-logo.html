@@ -1,0 +1,48 @@
+<!-- @dsCard group="Brand" viewport="700x260" name="Wordmark & monogram" subtitle="avdeev · ga · the lockup" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--bg-base); padding: 28px; font-family: var(--font-sans); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .panel { background: var(--surface-card); border: 1px solid var(--border-soft); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: 22px; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+  .panel.dark { background: #1e1813; border-color: rgba(246,234,219,0.1); }
+  .lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); }
+  .panel.dark .lbl { color: #8a7866; }
+  .wordmark { font-family: var(--font-serif-display); font-weight: 500; font-size: 44px; letter-spacing: -0.02em; color: var(--text-strong); line-height: 1; }
+  .wordmark .dot { color: var(--accent); }
+  .panel.dark .wordmark { color: #f6ecde; }
+  .lockup { display: flex; align-items: center; gap: 14px; }
+  .lockup img { width: 52px; height: 52px; }
+  .lockup .name { font-family: var(--font-serif-display); font-size: 30px; font-weight: 500; color: var(--text-strong); letter-spacing: -0.02em; }
+  .panel.dark .lockup .name { color: #f6ecde; }
+  .full { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="panel">
+      <span class="lbl">wordmark · light</span>
+      <div class="wordmark">avdeev<span class="dot">.</span></div>
+      <span class="full">Grigorii Avdeev · ai &amp; quant engineer</span>
+    </div>
+    <div class="panel dark">
+      <span class="lbl">wordmark · dark</span>
+      <div class="wordmark">avdeev<span class="dot">.</span></div>
+    </div>
+    <div class="panel">
+      <span class="lbl">lockup</span>
+      <div class="lockup"><img src="../assets/monogram.svg" alt="ga monogram" /><span class="name">avdeev</span></div>
+    </div>
+    <div class="panel" style="align-items:center;flex-direction:row;gap:18px;justify-content:flex-start">
+      <img src="../assets/monogram.svg" alt="ga monogram" style="width:64px;height:64px" />
+      <div>
+        <span class="lbl">monogram</span>
+        <div class="full" style="margin-top:6px">/ga · favicon · avatar</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

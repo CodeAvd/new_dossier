@@ -1,0 +1,184 @@
+/* ============================================================
+   avdeev — color tokens
+   warm pastel system: peach / terracotta / apricot on cream,
+   a warm-ink text scale, and a small playful accent set.
+   Light is default; [data-theme="dark"] is a warm dark.
+   ============================================================ */
+
+:root {
+  /* --- warm ink (text + warm charcoals) --- */
+  --ink-900: #241d18;
+  --ink-800: #322a23;
+  --ink-700: #463b31;
+  --ink-600: #5f5246;
+  --ink-500: #7c6d5e;
+  --ink-400: #9c8c7b;
+  --ink-300: #bcad9c;
+  --ink-200: #d8cbbb;
+
+  /* --- warm neutral surfaces (cream / oat / sand) ---
+     aligned to david-hckh.com's real beige ramp (#f5efe6 → #dfd1bc). */
+  --cream-50:  #fdf8f1;
+  --cream-100: #fbf4ec;
+  --cream-200: #f5efe6;  /* david beige-400 */
+  --sand-100:  #f1e5d5;  /* david beige-500 */
+  --sand-200:  #e9ded0;  /* david beige-600 */
+  --sand-300:  #dfd1bc;  /* david beige-700 */
+  --sand-400:  #d3c0a7;
+
+  /* --- terracotta / peach / apricot (primary accent ramp) --- */
+  --terra-50:  #fdf0e7;
+  --terra-100: #fadfce;
+  --terra-200: #f5c6a8;
+  --terra-300: #efad85;
+  --terra-400: #e8a87c; /* hero apricot */
+  --terra-500: #de9268; /* primary */
+  --terra-600: #cd7a50; /* hover */
+  --terra-700: #b1603b; /* press / strong */
+  --terra-800: #8c4b2e;
+
+  /* --- supporting playful pastels (sparing: tags, charts, illos) ---
+     grounded in real scraped values: bokoko33.me pink/mint/periwinkle
+     + a vivid cyan SPARK (david-hckh.com #34bfff) as the cool complement. */
+  --blush:      #eaa1ac;  /* bokoko pink  */
+  --blush-deep: #d27f8c;
+  --honey:      #ecc98c;
+  --honey-deep: #d6a85d;
+  --sage:       #7bd0ad;  /* bokoko mint  */
+  --sage-deep:  #4fae87;
+  --sky:        #95abe5;  /* bokoko periwinkle */
+  --sky-deep:   #5b6eb3;  /* bokoko navy  */
+  --mauve:      #c8a9bd;
+  --mauve-deep: #a87f97;
+
+  /* --- SPARK: vivid cyan pop (david-hckh.com). the one cool accent;
+     use against terracotta for warm/cool tension. never large areas. */
+  --spark:       #34bfff;
+  --spark-deep:  #0086bb;
+  --spark-soft:  #d8f2ff;
+  --spark-tint:  #eaf8ff;
+  --spark-text:  #0a5a7a;
+
+  /* --- HOLOGRAM: deep holographic blue (david-hckh.com).
+     for quant/data panels + dramatic dark surfaces. */
+  --holo-900:  #0c1530;
+  --holo-800:  #152242;
+  --holo-700:  #002474;
+  --holo-600:  #052e87;
+  --holo-500:  #234ba2;
+  --holo-top:  #003585;
+  --holo-text: #e1f5ff;
+
+  /* --- semantic --- */
+  --success:      #4fae87;
+  --success-soft: #dcf0e6;
+  --warning:      #d6a85d;
+  --warning-soft: #f8ebcf;
+  --danger:       #cf7a6c;
+  --danger-soft:  #f6dcd6;
+  --info:         #34bfff;
+  --info-soft:    #d8f2ff;
+
+  /* ============================================================
+     SEMANTIC ALIASES  (use these in components, not raw ramps)
+     ============================================================ */
+
+  /* backgrounds */
+  --bg-base:   #fbf4ec;   /* page */
+  --bg-subtle: #f6eadb;   /* recessed sections */
+  --bg-sunken: #f1e2cf;   /* wells, code blocks */
+
+  /* surfaces */
+  --surface-card:    #fffaf3;
+  --surface-card-2:  #fdf3e8;
+  --surface-raised:  #ffffff;
+  --surface-overlay: #fffaf3;
+  --surface-inverse: #2a221c;
+
+  /* text */
+  --text-strong:    var(--ink-900);
+  --text-body:      var(--ink-700);
+  --text-muted:     #6a5b4d;
+  --text-faint:     #6f6052;
+  --text-on-accent: #4a2a18;   /* warm dark text on terracotta */
+  --text-inverse:   #f6eadb;
+
+  /* accent / brand */
+  --accent:       var(--terra-500);
+  --accent-hover: var(--terra-600);
+  --accent-press: var(--terra-700);
+  --accent-soft:  var(--terra-100);
+  --accent-tint:  var(--terra-50);
+  --accent-ring:  rgba(222, 146, 104, 0.35);
+
+  /* spark — cool cyan complement (links, focus pops, data) */
+  --spark-accent: var(--spark);
+  --spark-on:     #062836;
+
+  /* deep holographic surfaces (quant / data / dramatic dark) */
+  --holo-surface: var(--holo-800);
+  --holo-on:      var(--holo-text);
+
+  /* borders / lines */
+  --border-soft:   rgba(70, 59, 49, 0.10);
+  --border-line:   rgba(70, 59, 49, 0.16);
+  --border-strong: rgba(70, 59, 49, 0.28);
+  --divider:       rgba(70, 59, 49, 0.08);
+
+  /* focus */
+  --focus-ring: var(--terra-500);
+}
+
+/* ============================================================
+   WARM DARK — espresso backgrounds, cream text, brightened terra
+   ============================================================ */
+[data-theme="dark"] {
+  --bg-base:   #1e1813;
+  --bg-subtle: #251e18;
+  --bg-sunken: #16110d;
+
+  --surface-card:    #2a221b;
+  --surface-card-2:  #322820;
+  --surface-raised:  #352a21;
+  --surface-overlay: #2f2620;
+  --surface-inverse: #fbf4ec;
+
+  --text-strong:    #f6ecde;
+  --text-body:      #e4d6c4;
+  --text-muted:     #b3a08c;
+  --text-faint:     #8a7866;
+  --text-on-accent: #2a1810;
+  --text-inverse:   #2a221c;
+
+  --accent:       #e8a87c;
+  --accent-hover: #efb88f;
+  --accent-press: #f0c4a3;
+  --accent-soft:  #3a2a1d;
+  --accent-tint:  #2f241a;
+  --accent-ring:  rgba(232, 168, 124, 0.40);
+
+  /* spark stays vivid on dark; soft tints go deep */
+  --spark-accent: #5fccff;
+  --spark-soft:   #103040;
+  --spark-tint:   #0d2733;
+  --spark-text:   #aee4ff;
+  --spark-on:     #062836;
+  --holo-surface: var(--holo-900);
+
+  --border-soft:   rgba(246, 234, 219, 0.08);
+  --border-line:   rgba(246, 234, 219, 0.14);
+  --border-strong: rgba(246, 234, 219, 0.26);
+  --divider:       rgba(246, 234, 219, 0.07);
+
+  --focus-ring: #e8a87c;
+
+  --success-soft: #2c3a26;
+  --warning-soft: #3d3220;
+  --danger-soft:  #3d271f;
+  --info-soft:    #103040;
+
+  /* pastels brighten slightly on espresso */
+  --blush:  #efadb8;
+  --sage:   #8fdcbb;
+  --sky:    #a6b9ec;
+}

@@ -1,0 +1,267 @@
+/* ============================================================
+   kit-agent.css — ARB-87 signature reframe
+   "an autonomous QA agent assembles & certifies this portfolio,
+    citing its evidence as it goes."
+   Layered on top of kit.css / kit-gl.css. Additive only — the wave
+   and every R3F scene are untouched (those are ARB-90 / ARB-91).
+   ============================================================ */
+
+/* ---- the agent's sigil (isometric cube wireframe) ---- */
+.av-mark { display: inline-block; flex: none; color: var(--spark-deep); }
+.av-mark line, .av-mark polygon { vector-effect: non-scaling-stroke; }
+
+/* ============================================================
+   HERO — agent leads, the kept wave becomes the EVIDENCE FIELD
+   ============================================================ */
+
+/* eyebrow upgraded to an agent identity chip */
+.av-herogl__eyebrow.is-agent {
+  align-items: center;
+  gap: 9px;
+  padding: 6px 12px 6px 9px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cream-50) 72%, transparent);
+  border: 1px solid var(--border-soft);
+  backdrop-filter: blur(8px);
+  color: var(--spark-text);
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+.av-herogl__eyebrow.is-agent .pulse { order: 3; }
+.av-herogl__eyebrow.is-agent b { font-weight: 600; color: var(--ink-900); }
+
+/* one-line frame that sets the whole site's premise, sits under the sub */
+.av-herogl__premise {
+  margin-top: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  max-width: 52ch;
+  font-family: var(--font-mono);
+  font-size: clamp(12px, 1.35vw, 13.5px);
+  line-height: 1.65;
+  color: var(--ink-700);
+  padding: 13px 15px;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--spark) 7%, transparent);
+  border: 1px solid color-mix(in srgb, var(--spark) 18%, transparent);
+  border-left: 2px solid var(--spark-deep);
+}
+.av-herogl__premise .av-mark { margin-top: 1px; }
+.av-herogl__premise b { color: var(--ink-900); font-weight: 600; }
+
+/* label pinned over the wave naming it as the agent's evidence field */
+.av-herogl__field-label {
+  position: absolute;
+  right: clamp(1.5rem, 4vw, 3rem);
+  top: clamp(6.5rem, 15vh, 9rem);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--spark-text);
+  pointer-events: none;
+}
+.av-herogl__field-label .ln {
+  width: 26px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--spark-deep));
+}
+@media (max-width: 1080px) { .av-herogl__field-label { display: none; } }
+
+/* readout chip → reframed as the evidence field's live status */
+.av-herogl__readout { min-width: 208px; gap: 7px; }
+.av-herogl__readout .badge,
+.av-herogl__readout .k,
+.av-herogl__readout .v { white-space: nowrap; }
+.av-herogl__readout .v b { text-transform: none; }
+.av-herogl__readout .badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--spark-text);
+}
+.av-herogl__readout .badge i {
+  width: 6px; height: 6px; border-radius: 999px;
+  background: var(--spark-deep);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--spark) 60%, transparent);
+  animation: pulse 2.4s infinite;
+}
+
+/* ============================================================
+   UNDER-AUDIT METRIC — honesty as signature (ARB-92 framing)
+   the blank "—" stays, but now reads as deliberate restraint.
+   ============================================================ */
+.av-ua { display: flex; flex-direction: column; gap: 8px; }
+.av-ua__top { display: flex; align-items: center; gap: 10px; }
+.av-ua__dash {
+  font-family: var(--font-serif-display);
+  font-weight: var(--fw-medium, 500);
+  font-size: 2rem; line-height: 1;
+  color: color-mix(in srgb, var(--text-strong) 42%, transparent);
+  letter-spacing: -0.02em;
+}
+.av-ua__scan {
+  position: relative; width: 40px; height: 7px; border-radius: 3px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--ink-700) 9%, transparent);
+  border: 1px solid var(--border-soft);
+}
+.av-ua__scan::after {
+  content: ""; position: absolute; inset: 0; width: 40%;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--spark) 60%, transparent), transparent);
+  transform: translateX(-130%);
+  animation: ua-scan 2.4s cubic-bezier(.45,0,.55,1) infinite;
+}
+@keyframes ua-scan { 0% { transform: translateX(-130%); } 100% { transform: translateX(360%); } }
+.av-ua__label {
+  font-family: var(--font-mono); font-size: var(--fs-2xs, 11px);
+  letter-spacing: var(--ls-label, 0.1em); text-transform: uppercase;
+  color: var(--text-muted);
+}
+.av-ua__tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+  color: var(--spark-text);
+}
+.av-ua__tag::before {
+  content: ""; width: 5px; height: 5px; border-radius: 999px;
+  border: 1px solid var(--spark-deep); flex: none;
+}
+
+/* dark band variant (trading) */
+.av-ua--dark .av-ua__dash { color: color-mix(in srgb, #fff 55%, transparent); }
+.av-ua--dark .av-ua__scan { background: rgba(225,245,255,0.07); border-color: rgba(225,245,255,0.14); }
+.av-ua--dark .av-ua__scan::after { background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--spark) 75%, transparent), transparent); }
+.av-ua--dark .av-ua__label { color: color-mix(in srgb, var(--holo-text) 60%, transparent); }
+.av-ua--dark .av-ua__tag { color: var(--spark); }
+.av-ua--dark .av-ua__tag::before { border-color: var(--spark); }
+
+@media (prefers-reduced-motion: reduce) {
+  .av-ua__scan::after { animation: none; transform: translateX(140%); }
+  .av-herogl__readout .badge i { animation: none; }
+}
+
+/* ============================================================
+   THE CERTIFICATION THREAD — fixed agent console.
+   Scroll is the camera; the agent audits & stamps each scene,
+   coupling the scenes into one directed film (ARB-91 framing).
+   ============================================================ */
+.av-agent {
+  position: fixed;
+  left: clamp(12px, 2vw, 22px);
+  bottom: clamp(12px, 2vw, 22px);
+  z-index: 45;
+  width: 270px;
+  max-width: calc(100vw - 24px);
+  font-family: var(--font-mono);
+  color: var(--ink-700);
+  background: color-mix(in srgb, var(--surface-card) 86%, transparent);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(16px) saturate(1.25);
+  padding: 13px 15px 13px;
+  /* rests visible (kit.css convention: never rest at opacity:0, which freezes
+     hidden in a throttled preview). A short entrance handled by .is-in below. */
+  opacity: 1;
+  transform: translateY(10px);
+  transition: transform .6s var(--ease-expo, cubic-bezier(.16,1,.3,1));
+}
+.av-agent.is-in { transform: translateY(0); }
+
+.av-agent__head {
+  display: flex; align-items: center; gap: 9px;
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--divider);
+}
+.av-agent__id {
+  font-size: 10.5px; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--text-muted); white-space: nowrap;
+}
+.av-agent__id b { color: var(--ink-900); font-weight: 600; }
+.av-agent__live {
+  margin-left: auto; display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--spark-text);
+}
+.av-agent__live i {
+  width: 7px; height: 7px; border-radius: 999px; background: var(--spark-deep);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--spark) 55%, transparent);
+  animation: pulse 2.2s infinite;
+}
+.av-agent[data-done="true"] .av-agent__live { color: var(--success); }
+.av-agent[data-done="true"] .av-agent__live i {
+  background: var(--success); animation: none;
+}
+
+.av-agent__now { padding: 12px 0 11px; }
+.av-agent__verb {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--spark-text); margin-bottom: 6px;
+}
+.av-agent__verb .car {
+  width: 6px; height: 9px; background: var(--spark-deep);
+  animation: ua-blink 1.1s steps(1) infinite;
+}
+.av-agent[data-done="true"] .av-agent__verb { color: var(--success); }
+.av-agent[data-done="true"] .av-agent__verb .car { background: var(--success); animation: none; }
+@keyframes ua-blink { 50% { opacity: 0; } }
+.av-agent__scene {
+  font-family: var(--font-serif-display);
+  font-size: 19px; font-weight: 500; letter-spacing: -0.01em;
+  line-height: 1.2; color: var(--ink-900);
+}
+.av-agent__meta {
+  margin-top: 4px; font-size: 11px; color: var(--text-muted);
+}
+.av-agent__meta mark {
+  background: color-mix(in srgb, var(--spark) 16%, transparent);
+  color: var(--spark-text); border-radius: 3px; padding: 0 3px;
+}
+
+.av-agent__foot { padding-top: 11px; border-top: 1px solid var(--divider); }
+.av-agent__count {
+  display: flex; align-items: baseline; justify-content: space-between;
+  font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 8px;
+}
+.av-agent__count b { font-family: var(--font-serif-display); font-size: 15px; color: var(--ink-900); letter-spacing: 0; }
+.av-agent__dots { display: flex; gap: 5px; margin-bottom: 9px; }
+.av-agent__dots i {
+  flex: 1; height: 4px; border-radius: 999px;
+  background: color-mix(in srgb, var(--ink-700) 12%, transparent);
+  transition: background .4s var(--ease-out, ease);
+}
+.av-agent__dots i[data-on="true"] { background: var(--spark-deep); }
+.av-agent__dots i[data-active="true"] {
+  background: color-mix(in srgb, var(--spark) 55%, var(--ink-700) 0%);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--spark) 22%, transparent);
+}
+.av-agent[data-done="true"] .av-agent__dots i { background: var(--success); }
+.av-agent__track {
+  position: relative; height: 2px; border-radius: 999px;
+  background: color-mix(in srgb, var(--ink-700) 10%, transparent);
+  overflow: hidden;
+}
+.av-agent__track i {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--spark) 60%, transparent), var(--spark-deep));
+  border-radius: 999px;
+  transition: width .25s var(--ease-out, ease);
+}
+.av-agent[data-done="true"] .av-agent__track i { background: var(--success); }
+
+/* compact on small screens: keep it, but slimmer + lower visual weight */
+@media (max-width: 560px) {
+  .av-agent { width: calc(100vw - 24px); padding: 11px 13px; }
+  .av-agent__scene { font-size: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .av-agent { transition: none; }
+  .av-agent__live i, .av-agent__verb .car { animation: none; }
+}

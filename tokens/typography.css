@@ -1,0 +1,86 @@
+/* ============================================================
+   avdeev — typography tokens
+   Serif display for headlines (with italic accent motif),
+   humanist sans for body, mono for labels/metadata/code.
+   ============================================================ */
+
+:root {
+  /* families (aliases of font tokens) */
+  --type-display: var(--font-serif-display);
+  --type-display-alt: var(--font-geo-display);  /* heavy geometric headlines */
+  --type-body:    var(--font-sans);
+  --type-mono:    var(--font-mono);
+
+  /* weights */
+  --fw-regular:  400; /* @kind other */
+  --fw-medium:   500; /* @kind other */
+  --fw-semibold: 600; /* @kind other */
+  --fw-bold:     700; /* @kind other */
+  --fw-extra:    800; /* @kind other */
+  --fw-black:    900; /* @kind other */ /* urbanist hero weight */
+
+  /* fluid display sizes (clamp: min, vw, max) */
+  --fs-display-2xl: clamp(3.25rem, 1.8rem + 6.4vw, 6.5rem);  /* @kind other */
+  --fs-display-xl:  clamp(2.5rem, 1.5rem + 4.4vw, 4.5rem);   /* @kind other */
+  --fs-display-lg:  clamp(2rem, 1.3rem + 3vw, 3.25rem);      /* @kind other */
+  --fs-display-md:  clamp(1.65rem, 1.2rem + 2vw, 2.5rem);    /* @kind other */
+
+  /* text sizes (static) */
+  --fs-xl:   1.5rem;    /* @kind other */
+  --fs-lg:   1.25rem;   /* @kind other */
+  --fs-md:   1.0625rem; /* @kind other */
+  --fs-base: 1rem;      /* @kind other */
+  --fs-sm:   0.875rem;  /* @kind other */
+  --fs-xs:   0.75rem;   /* @kind other */
+  --fs-2xs:  0.6875rem; /* @kind other */
+
+  /* line heights */
+  --lh-tight:   1.05;  /* @kind other */
+  --lh-snug:    1.18;  /* @kind other */
+  --lh-display: 1.08;  /* @kind other */
+  --lh-heading: 1.22;  /* @kind other */
+  --lh-body:    1.62;  /* @kind other */
+  --lh-relaxed: 1.75;  /* @kind other */
+
+  /* letter spacing */
+  --ls-tighter: -0.03em;  /* @kind other */
+  --ls-tight:   -0.015em; /* @kind other */
+  --ls-normal:  0;        /* @kind other */
+  --ls-wide:    0.04em;   /* @kind other */
+  --ls-label:   0.14em;   /* @kind other */
+}
+
+/* ---- reusable type roles (apply as classes if convenient) ---- */
+.t-eyebrow {
+  font-family: var(--type-mono);
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.t-display {
+  font-family: var(--type-display);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-tight);
+  color: var(--text-strong);
+}
+.t-display em,
+.t-accent-italic {
+  font-style: italic;
+  font-weight: var(--fw-regular);
+  color: var(--accent);
+}
+.t-body {
+  font-family: var(--type-body);
+  font-size: var(--fs-md);
+  line-height: var(--lh-body);
+  color: var(--text-body);
+}
+.t-mono {
+  font-family: var(--type-mono);
+  font-size: var(--fs-sm);
+  letter-spacing: 0;
+  color: var(--text-body);
+}

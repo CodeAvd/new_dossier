@@ -1,0 +1,29 @@
+<!-- @dsCard group="Colors" viewport="700x190" name="Terracotta — primary ramp" subtitle="peach → apricot → terracotta, the brand spine" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--bg-base); padding: 22px; }
+  .row { display: flex; gap: 10px; }
+  .sw { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .chip { height: 76px; border-radius: var(--radius-md); border: 1px solid var(--border-soft); box-shadow: var(--shadow-xs); }
+  .meta { font-family: var(--font-mono); font-size: 11px; line-height: 1.5; }
+  .name { color: var(--text-strong); font-weight: 600; }
+  .hex { color: var(--text-muted); text-transform: uppercase; }
+  .star { position: absolute; margin: 6px 0 0 8px; font-family: var(--font-mono); font-size: 10px; color: var(--text-on-accent); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--terra-100)"></div><div class="meta"><div class="name">100</div><div class="hex">#fadfce</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--terra-200)"></div><div class="meta"><div class="name">200</div><div class="hex">#f5c6a8</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--terra-300)"></div><div class="meta"><div class="name">300</div><div class="hex">#efad85</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--terra-400)"><span class="star">apricot</span></div><div class="meta"><div class="name">400</div><div class="hex">#e8a87c</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--terra-500)"><span class="star">primary</span></div><div class="meta"><div class="name">500</div><div class="hex">#de9268</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--terra-600)"></div><div class="meta"><div class="name">600</div><div class="hex">#cd7a50</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--terra-700)"></div><div class="meta"><div class="name">700</div><div class="hex">#b1603b</div></div></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!-- @dsCard group="Colors" viewport="700x190" name="Playful pastels & semantic" subtitle="sparing category accents + status colors" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--bg-base); padding: 22px; display: flex; flex-direction: column; gap: 16px; }
+  .row { display: flex; gap: 10px; }
+  .sw { flex: 1; display: flex; flex-direction: column; gap: 7px; }
+  .chip { height: 52px; border-radius: var(--radius-md); border: 1px solid var(--border-soft); }
+  .meta { font-family: var(--font-mono); font-size: 10.5px; }
+  .name { color: var(--text-strong); font-weight: 600; }
+  .lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); margin-bottom: -4px; }
+  .stat { display:flex; align-items:center; gap:8px; }
+  .dot { width: 11px; height: 11px; border-radius: 999px; }
+  .pill { font-family: var(--font-mono); font-size: 11px; padding: 3px 9px; border-radius: 999px; }
+</style>
+</head>
+<body>
+  <div>
+    <div class="lbl">playful pastels</div>
+    <div class="row" style="margin-top:10px">
+      <div class="sw"><div class="chip" style="background:var(--blush)"></div><div class="meta"><div class="name">blush</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--honey)"></div><div class="meta"><div class="name">honey</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--sage)"></div><div class="meta"><div class="name">sage</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--sky)"></div><div class="meta"><div class="name">sky</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--mauve)"></div><div class="meta"><div class="name">mauve</div></div></div>
+    </div>
+  </div>
+  <div>
+    <div class="lbl">semantic</div>
+    <div class="row" style="margin-top:10px; gap:14px">
+      <span class="pill" style="background:var(--success-soft);color:var(--success-deep,var(--sage-deep))"><span class="dot" style="display:inline-block;background:var(--success)"></span> success</span>
+      <span class="pill" style="background:var(--warning-soft);color:var(--honey-deep)"><span class="dot" style="display:inline-block;background:var(--warning)"></span> warning</span>
+      <span class="pill" style="background:var(--danger-soft);color:var(--danger)"><span class="dot" style="display:inline-block;background:var(--danger)"></span> danger</span>
+      <span class="pill" style="background:var(--info-soft);color:var(--sky-deep)"><span class="dot" style="display:inline-block;background:var(--info)"></span> info</span>
+    </div>
+  </div>
+</body>
+</html>

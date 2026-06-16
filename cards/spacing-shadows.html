@@ -1,0 +1,24 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Shadows — warm-tinted" subtitle="brown diffuse elevation, never grey" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--bg-base); padding: 30px 24px; font-family: var(--font-mono); }
+  .row { display: flex; gap: 26px; align-items: center; justify-content: space-between; }
+  .col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .box { width: 92px; height: 64px; background: var(--surface-card); border-radius: var(--radius-md); }
+  .n { font-size: 11px; color: var(--text-strong); font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="col"><div class="box" style="box-shadow:var(--shadow-xs)"></div><div class="n">xs</div></div>
+    <div class="col"><div class="box" style="box-shadow:var(--shadow-sm)"></div><div class="n">sm</div></div>
+    <div class="col"><div class="box" style="box-shadow:var(--shadow-md)"></div><div class="n">md</div></div>
+    <div class="col"><div class="box" style="box-shadow:var(--shadow-lg)"></div><div class="n">lg</div></div>
+    <div class="col"><div class="box" style="box-shadow:var(--shadow-accent)"></div><div class="n">accent</div></div>
+  </div>
+</body>
+</html>

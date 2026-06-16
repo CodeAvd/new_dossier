@@ -1,0 +1,86 @@
+<!-- @dsCard group="Components" viewport="700x500" name="Core — Button, Tag, Stat, Card" subtitle="actions, chips, metrics, surfaces + holo/dashed" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; background: var(--bg-base); padding: 26px; font-family: var(--font-sans); }
+  .wrap { display: flex; flex-direction: column; gap: 22px; }
+  .group { display: flex; flex-direction: column; gap: 12px; }
+  .lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); }
+  .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .stats { display: flex; gap: 34px; align-items: flex-start; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Button, Tag, Stat, Card } = window.AvdeevDesignSystem_a8f605;
+  function Demo() {
+    return (
+      <div className="wrap">
+        <div className="group">
+          <span className="lbl">button · variants + sizes</span>
+          <div className="row">
+            <Button variant="primary">ship it</Button>
+            <Button variant="secondary">case study</Button>
+            <Button variant="outline">download cv</Button>
+            <Button variant="ghost">skip</Button>
+            <Button variant="primary" size="sm">sm</Button>
+            <Button variant="primary" size="lg">lg</Button>
+            <Button variant="primary" disabled>disabled</Button>
+          </div>
+        </div>
+        <div className="group">
+          <span className="lbl">tag · tones</span>
+          <div className="row">
+            <Tag tone="accent">python</Tag>
+            <Tag tone="spark">webgl</Tag>
+            <Tag tone="neutral">pytorch</Tag>
+            <Tag tone="outline">2024</Tag>
+            <Tag tone="sage" dot>shipped</Tag>
+            <Tag tone="honey">+1.8 sharpe</Tag>
+            <Tag tone="sky">rag</Tag>
+            <Tag tone="mauve">evals</Tag>
+            <Tag tone="danger" dot>deprecated</Tag>
+          </div>
+        </div>
+        <div className="group">
+          <span className="lbl">stat · evidence metrics</span>
+          <div className="stats">
+            <Stat value="98.2" unit="%" label="citation recall" />
+            <Stat value="+1.8" label="sharpe" sub="live · 14 mo" />
+            <Stat value="40" unit="ms" label="p50 latency" size="sm" />
+          </div>
+        </div>
+        <div className="group">
+          <span className="lbl">card · interactive surface</span>
+          <div style={{display:"flex", gap:16, flexWrap:"wrap"}}>
+            <Card padding="md" interactive style={{maxWidth: 300}}>
+              <div style={{fontFamily:"var(--font-serif-display)", fontSize:20, color:"var(--text-strong)", marginBottom:6}}>
+                agent that <em style={{fontStyle:"italic", color:"var(--accent)"}}>cites</em> its evidence
+              </div>
+              <div style={{fontSize:14, color:"var(--text-muted)"}}>file-first retrieval, every claim linked to a source span.</div>
+            </Card>
+            <Card elevation="holo" padding="md" style={{maxWidth: 220}}>
+              <div style={{fontFamily:"var(--font-mono)", fontSize:10, letterSpacing:"0.12em", textTransform:"uppercase", color:"var(--spark)", marginBottom:8}}>quant · live</div>
+              <div style={{fontFamily:"var(--font-serif-display)", fontSize:34, color:"#fff"}}>+1.8<span style={{fontStyle:"italic", color:"var(--spark)", fontSize:"0.5em"}}> sharpe</span></div>
+              <div style={{fontSize:13, color:"var(--holo-text)", opacity:0.7, marginTop:4}}>holographic data panel</div>
+            </Card>
+            <Card elevation="dashed" padding="md" style={{maxWidth: 200}}>
+              <div style={{fontFamily:"var(--font-mono)", fontSize:13, color:"var(--text-muted)"}}>+ dashed-outline variant</div>
+            </Card>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!-- @dsCard group="Type" viewport="700x230" name="Display — Newsreader serif" subtitle="headlines, with italic accent motif" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--bg-base); padding: 26px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+  .big { font-family: var(--font-serif-display); font-weight: 500; font-size: 52px; line-height: 1.04; letter-spacing: -0.015em; color: var(--text-strong); margin: 0; }
+  .big em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .scale { display: flex; align-items: baseline; gap: 22px; margin-top: 22px; }
+  .scale span { font-family: var(--font-serif-display); color: var(--text-strong); line-height: 1; }
+  .tag { font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); display:block; margin-top: 4px; }
+  .cell { text-align: center; }
+</style>
+</head>
+<body>
+  <div class="eyebrow">newsreader · serif display</div>
+  <h2 class="big">build agents that <em>cite</em> their evidence.</h2>
+  <div class="scale">
+    <div class="cell"><span style="font-size:46px">Aa</span><span class="tag">2xl · 500</span></div>
+    <div class="cell"><span style="font-size:34px">Aa</span><span class="tag">xl · 500</span></div>
+    <div class="cell"><span style="font-size:26px;font-style:italic;font-weight:400;color:var(--accent)">Aa</span><span class="tag">lg · italic</span></div>
+    <div class="cell"><span style="font-size:20px">Aa</span><span class="tag">md · 600</span></div>
+  </div>
+</body>
+</html>

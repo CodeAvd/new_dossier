@@ -1,0 +1,27 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Radii — soft & generous" subtitle="friendly rounding, sm → 2xl → pill" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--bg-base); padding: 24px; font-family: var(--font-mono); }
+  .row { display: flex; gap: 16px; align-items: flex-end; }
+  .col { display: flex; flex-direction: column; align-items: center; gap: 9px; }
+  .box { width: 84px; height: 70px; background: var(--surface-card); border: 1.5px solid var(--terra-400); box-shadow: var(--shadow-xs); }
+  .n { font-size: 11px; color: var(--text-strong); font-weight: 600; }
+  .v { font-size: 9px; color: var(--text-faint); }
+  .pill { width: 84px; height: 38px; border-radius: var(--radius-pill); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="col"><div class="box" style="border-radius:var(--radius-sm)"></div><div class="n">sm</div><div class="v">10px</div></div>
+    <div class="col"><div class="box" style="border-radius:var(--radius-md)"></div><div class="n">md</div><div class="v">16px</div></div>
+    <div class="col"><div class="box" style="border-radius:var(--radius-lg)"></div><div class="n">lg</div><div class="v">22px</div></div>
+    <div class="col"><div class="box" style="border-radius:var(--radius-xl)"></div><div class="n">xl</div><div class="v">30px</div></div>
+    <div class="col"><div class="box" style="border-radius:var(--radius-2xl)"></div><div class="n">2xl</div><div class="v">40px</div></div>
+    <div class="col"><div class="box pill"></div><div class="n">pill</div><div class="v">999</div></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!-- @dsCard group="Type" viewport="700x180" name="Mono — JetBrains Mono" subtitle="labels, metadata, code, evidence chips" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--bg-base); padding: 26px; font-family: var(--font-mono); }
+  .eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+  .lbl { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 14px; }
+  .chip { font-size: 12px; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-press); border: 1px solid var(--border-soft); }
+  .code { margin-top: 16px; background: var(--bg-sunken); border: 1px solid var(--border-soft); border-radius: var(--radius-md); padding: 12px 14px; font-size: 13px; color: var(--text-body); line-height: 1.7; }
+  .k { color: var(--accent-press); } .s { color: var(--sage-deep); } .c { color: var(--text-faint); }
+</style>
+</head>
+<body>
+  <div class="eyebrow">jetbrains mono · metadata</div>
+  <div class="lbl">eyebrow label · 0.14em tracking</div>
+  <div class="row">
+    <span class="chip">cites_evidence</span>
+    <span class="chip">file-first</span>
+    <span class="chip">+1.8 sharpe</span>
+    <span class="chip">98.2% recall</span>
+  </div>
+  <div class="code"><span class="c">// evidence-backed by design</span><br><span class="k">const</span> verdict = agent.<span class="s">cite</span>(source);</div>
+</body>
+</html>

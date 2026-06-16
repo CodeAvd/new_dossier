@@ -1,0 +1,28 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Warm neutrals — cream & sand" subtitle="page, surfaces, and sunken wells" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--bg-base); padding: 22px; }
+  .row { display: flex; gap: 10px; }
+  .sw { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .chip { height: 72px; border-radius: var(--radius-md); border: 1px solid var(--border-line); }
+  .meta { font-family: var(--font-mono); font-size: 11px; line-height: 1.5; }
+  .name { color: var(--text-strong); font-weight: 600; }
+  .hex { color: var(--text-muted); text-transform: uppercase; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--cream-50)"></div><div class="meta"><div class="name">cream-50</div><div class="hex">#fdf8f1</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--bg-base)"></div><div class="meta"><div class="name">bg-base</div><div class="hex">#fbf4ec</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--bg-subtle)"></div><div class="meta"><div class="name">bg-subtle</div><div class="hex">#f6eadb</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--bg-sunken)"></div><div class="meta"><div class="name">bg-sunken</div><div class="hex">#f1e2cf</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--sand-200)"></div><div class="meta"><div class="name">sand-200</div><div class="hex">#efe3d2</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--sand-400)"></div><div class="meta"><div class="name">sand-400</div><div class="hex">#d3c0a7</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--surface-card);box-shadow:var(--shadow-sm)"></div><div class="meta"><div class="name">card</div><div class="hex">#fffaf3</div></div></div>
+  </div>
+</body>
+</html>

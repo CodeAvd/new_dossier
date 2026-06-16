@@ -1,0 +1,306 @@
+/* ============================================================
+   kit-gl.css — webgl hero (B · urbanist heavy) + 3D edge terrain
+   layered on top of kit.css / styles.css
+   ============================================================ */
+
+/* ---------- SINGLE ACCENT (index-r3f.html only) ----------
+   .av-one-accent re-points the whole terracotta accent family at the cyan
+   SPARK family, so the dossier reads with ONE accent. Nothing is hard-coded:
+   flip --spark in tokens/colors.css and headline, stats, tags, buttons, the
+   contact blob and the GL all follow. Scoped to this wrapper so the vanilla
+   fallback (index-gl.html) keeps the original terracotta. */
+.av-one-accent {
+  /* semantic accent tokens → spark */
+  --accent:         var(--spark);
+  --accent-hover:   var(--spark-deep);
+  --accent-press:   var(--spark-text);
+  --accent-soft:    var(--spark-soft);
+  --accent-tint:    var(--spark-tint);
+  --accent-ring:    color-mix(in srgb, var(--spark) 35%, transparent);
+  --text-on-accent: var(--spark-on);
+  --focus-ring:     var(--spark);
+
+  /* stray raw terracotta-ramp references (decorative blobs, marks, contact
+     em, project glow) → cyan equivalents */
+  --terra-100: var(--spark-soft);
+  --terra-300: color-mix(in srgb, var(--spark) 60%, var(--cream-50));
+  --terra-400: var(--spark);
+  --terra-500: var(--spark-deep);
+  --terra-600: var(--spark-deep);
+  --terra-700: var(--spark-text);
+}
+/* headline: match "proof" (.ac) to "edge" (.sp) — one readable deep cyan */
+.av-one-accent .av-herogl__title .ac {
+  color: var(--spark-deep);
+}
+/* accent-as-TEXT: route to the readable, theme-aware token (fills untouched) */
+.av-one-accent .av-sec-num,
+.av-one-accent .av-sec-title em,
+.av-one-accent .av-logo .dot,
+.av-one-accent .av-hero__title em,
+.av-one-accent .av-marquee__item::after,
+.av-one-accent .av-footer__note em {
+  color: var(--spark-text);
+}
+
+/* ---------- HERO (urbanist heavy / tool) ---------- */
+.av-herogl {
+  position: relative;
+  background: var(--sand-100);
+  color: var(--ink-700);
+  overflow: clip;
+  padding: clamp(7.5rem, 17vh, 12rem) 0 clamp(4rem, 8vh, 7rem);
+  isolation: isolate;
+}
+/* the GL canvas sits behind everything, faded toward the text column */
+.av-herogl__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  display: block;
+  -webkit-mask: radial-gradient(
+    120% 95% at 78% 42%,
+    #000 38%,
+    rgba(0, 0, 0, 0.55) 62%,
+    transparent 88%
+  );
+  mask: radial-gradient(
+    120% 95% at 78% 42%,
+    #000 38%,
+    rgba(0, 0, 0, 0.55) 62%,
+    transparent 88%
+  );
+}
+/* a soft sand wash on the left so the heavy type always wins */
+.av-herogl::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    100deg,
+    var(--sand-100) 27%,
+    color-mix(in srgb, var(--sand-100) 60%, transparent) 50%,
+    transparent 72%
+  );
+  pointer-events: none;
+}
+.av-herogl__inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+.av-herogl__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--spark-deep);
+  margin-bottom: 26px;
+}
+.av-herogl__eyebrow .pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--success);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--success) 70%, transparent);
+  animation: pulse 2.4s infinite;
+}
+
+.av-herogl__title {
+  font-family: var(--font-geo-display);
+  font-weight: 900;
+  font-size: clamp(3.4rem, 9vw, 7.4rem);
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+  text-transform: lowercase;
+  color: var(--ink-900);
+  margin: 0;
+  max-width: 14ch;
+  text-wrap: balance;
+}
+.av-herogl__title .ac {
+  color: var(--accent);
+}
+.av-herogl__title .sp {
+  color: var(--spark-deep);
+}
+.av-herogl__sub {
+  margin-top: 26px;
+  font-family: var(--font-mono);
+  font-size: clamp(13px, 1.4vw, 15px);
+  line-height: 1.7;
+  color: var(--ink-600);
+  max-width: 50ch;
+}
+.av-herogl__chips {
+  margin-top: 26px;
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+.av-herogl__cta {
+  margin-top: 34px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* small readout chip floating over the data-field on the right,
+   clear of both the headline (left) and the stats row (bottom) */
+.av-herogl__readout {
+  position: absolute;
+  right: clamp(1.5rem, 4vw, 3rem);
+  top: 54%;
+  bottom: auto;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--cream-50) 70%, transparent);
+  border: 1px solid var(--border-soft);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-md);
+  font-family: var(--font-mono);
+}
+@media (max-width: 1080px) {
+  .av-herogl__readout { display: none; }
+}
+.av-herogl__readout .k {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.av-herogl__readout .v {
+  font-size: 13px;
+  color: var(--ink-800);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.av-herogl__readout .v b {
+  color: var(--spark-deep);
+  font-weight: 600;
+}
+
+.av-herogl__stats {
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px 30px;
+}
+@media (min-width: 720px) {
+  .av-herogl__stats {
+    grid-template-columns: repeat(4, auto);
+    justify-content: space-between;
+  }
+}
+
+/* ---------- no-WebGL fallback (engine adds .av-gl-failed to the host) ---------- */
+.av-herogl.av-gl-failed .av-herogl__canvas,
+.av-tradinggl__viz.av-gl-failed .av-tradinggl__canvas {
+  display: none;
+}
+.av-herogl.av-gl-failed::after,
+.av-herogl.av-gl-warming::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(120% 95% at 78% 42%, color-mix(in srgb, var(--spark) 14%, transparent), transparent 70%),
+    repeating-linear-gradient(115deg, transparent 0 13px, color-mix(in srgb, var(--ink-700) 7%, transparent) 13px 14px);
+  -webkit-mask: radial-gradient(120% 95% at 78% 42%, #000 38%, transparent 88%);
+  mask: radial-gradient(120% 95% at 78% 42%, #000 38%, transparent 88%);
+  pointer-events: none;
+}
+.av-tradinggl__viz.av-gl-failed,
+.av-tradinggl__viz.av-gl-warming {
+  background:
+    radial-gradient(120% 120% at 70% 30%, color-mix(in srgb, var(--spark) 22%, transparent), transparent 65%),
+    repeating-linear-gradient(90deg, transparent 0 17px, color-mix(in srgb, var(--spark) 10%, transparent) 17px 18px),
+    linear-gradient(180deg, rgba(8, 18, 40, 0.65), rgba(4, 10, 28, 0.85));
+}
+
+/* ---------- TRADING — 3D edge terrain ---------- */
+.av-tradinggl__viz {
+  position: relative;
+  width: 100%;
+  height: clamp(280px, 38vw, 420px);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 18, 40, 0.35),
+    rgba(4, 10, 28, 0.65)
+  );
+  border: 1px solid color-mix(in srgb, var(--spark) 22%, transparent);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.42);
+}
+.av-tradinggl__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.av-tradinggl__grid-label {
+  position: absolute;
+  left: 16px;
+  top: 14px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--spark);
+  pointer-events: none;
+}
+.av-tradinggl__grid-label .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--spark);
+  box-shadow: 0 0 10px 1px color-mix(in srgb, var(--spark) 70%, transparent);
+  animation: pulse 2.4s infinite;
+}
+.av-tradinggl__axis {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--holo-text) 50%, transparent);
+  pointer-events: none;
+}
+.av-tradinggl__feet {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+@media (min-width: 560px) {
+  .av-tradinggl__feet { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .av-herogl__eyebrow .pulse,
+  .av-tradinggl__grid-label .dot { animation: none; }
+}

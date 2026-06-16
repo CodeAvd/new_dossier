@@ -1,0 +1,108 @@
+<!-- @dsCard group="Portfolio" viewport="1280x860" name="Portfolio — R3F (v3)" subtitle="fully React Three Fiber on one three r160: hero wave-field + 3D equity terrain" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>avdeev — ai &amp; quant engineer (r3f)</title>
+<link rel="icon" href="../../assets/favicon.svg" />
+<link rel="stylesheet" href="../../styles.css" />
+<link rel="stylesheet" href="kit.css" />
+<link rel="stylesheet" href="kit-gl.css" />
+<link rel="stylesheet" href="kit-agent.css" />
+<script>
+  // restore theme before paint
+  try {
+    var t = localStorage.getItem("av-theme");
+    if (!t) t = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+</script>
+
+<!-- Resource hints (pure file-edit slice toward ARB-88's waterfall/LCP goal;
+     the full Vite/esbuild ship build remains out-of-environment, see ARB-88).
+     Warm the CDN connections, then modulepreload the 8 pinned R3F packages so
+     the dep graph fetches in parallel instead of discovering serially. URLs are
+     byte-identical to the importmap targets below, so no double-fetch. -->
+<link rel="preconnect" href="https://esm.sh" crossorigin />
+<link rel="preconnect" href="https://unpkg.com" crossorigin />
+<link rel="dns-prefetch" href="https://esm.sh" />
+<link rel="modulepreload" href="https://esm.sh/react@18.3.1" crossorigin />
+<link rel="modulepreload" href="https://esm.sh/react-dom@18.3.1/client?deps=react@18.3.1" crossorigin />
+<link rel="modulepreload" href="https://esm.sh/three@0.160.1" crossorigin />
+<link rel="modulepreload" href="https://esm.sh/@react-three/fiber@8.17.10?external=react,react-dom,three" crossorigin />
+<link rel="modulepreload" href="https://esm.sh/@react-three/drei@9.114.0?external=react,react-dom,three,@react-three/fiber" crossorigin />
+<link rel="modulepreload" href="https://esm.sh/@react-three/postprocessing@2.16.3?external=react,three,@react-three/fiber" crossorigin />
+<link rel="modulepreload" href="https://esm.sh/postprocessing@6.36.4?external=three" crossorigin />
+
+<!-- import map: ONE copy each of react / react-dom / three; every R3F
+     package resolved with ?external so esm.sh does not inline its own. -->
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react-dom": "https://esm.sh/react-dom@18.3.1?deps=react@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client?deps=react@18.3.1",
+    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
+    "three": "https://esm.sh/three@0.160.1",
+    "@react-three/fiber": "https://esm.sh/@react-three/fiber@8.17.10?external=react,react-dom,three",
+    "@react-three/drei": "https://esm.sh/@react-three/drei@9.114.0?external=react,react-dom,three,@react-three/fiber",
+    "@react-three/postprocessing": "https://esm.sh/@react-three/postprocessing@2.16.3?external=react,three,@react-three/fiber",
+    "postprocessing": "https://esm.sh/postprocessing@6.36.4?external=three"
+  }
+}
+</script>
+
+<!-- UMD React for the Babel-transpiled site shell (separate root from the R3F mounts) -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script src="data.js"></script>
+
+<!-- R3F scenes: native ES modules. Both resolve the import map above (ONE
+     three@0.160, ONE React) — the page never loads r128. The hero exposes
+     window.AVR3F; the trading edge-terrain exposes window.AVR3F_TRADING. -->
+<script type="module" src="_hero-r3f.js"></script>
+<script type="module" src="_trading-r3f.js"></script>
+<script type="module" src="_funagent-r3f.js"></script>
+</head>
+<body>
+<div class="av-site av-grain av-one-accent" id="root"></div>
+
+<script type="text/babel" src="av-utils.jsx"></script>
+<script type="text/babel" src="Header.jsx"></script>
+<script type="text/babel" src="HeroR3F.jsx"></script>
+<script type="text/babel" src="About.jsx"></script>
+<script type="text/babel" src="Projects.jsx"></script>
+<script type="text/babel" src="FunAgent.jsx"></script>
+<script type="text/babel" src="TradingR3F.jsx"></script>
+<script type="text/babel" src="Experience.jsx"></script>
+<script type="text/babel" src="Stack.jsx"></script>
+<script type="text/babel" src="Contact.jsx"></script>
+<script type="text/babel" src="AgentThread.jsx"></script>
+<script type="text/babel" data-presets="react">
+  function App() {
+    return (
+      <React.Fragment>
+        <window.Header />
+        <main>
+          <window.HeroR3F />
+          <window.About />
+          <window.Projects />
+          <window.FunAgent />
+          <window.TradingR3F />
+          <window.Experience />
+          <window.Stack />
+          <window.Contact />
+        </main>
+        <window.AgentThread />
+      </React.Fragment>
+    );
+  }
+  const mount = () => ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  if (window.Header && window.HeroR3F && window.FunAgent && window.TradingR3F && window.Contact) mount();
+  else window.addEventListener("load", mount);
+</script>
+</body>
+</html>

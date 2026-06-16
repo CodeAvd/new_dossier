@@ -1,0 +1,149 @@
+<!-- @dsCard group="Portfolio" viewport="1280x760" name="Hero — 3 directions" subtitle="serif editorial · urbanist tool · holographic data" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>avdeev — hero directions</title>
+<link rel="icon" href="../../assets/favicon.svg" />
+<link rel="stylesheet" href="../../styles.css" />
+<link rel="stylesheet" href="kit.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; }
+  /* hero artboard shells */
+  .hv { position: relative; width: 100%; height: 100%; overflow: hidden; display: flex; flex-direction: column; justify-content: center; padding: 64px clamp(40px, 6vw, 80px); box-sizing: border-box; }
+  .hv__eyebrow { display: inline-flex; align-items: center; gap: 9px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 24px; }
+  .hv__cta { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .hv__pulse { width: 8px; height: 8px; border-radius: 999px; background: var(--success); }
+
+  /* ---- A: serif editorial ---- */
+  .hvA { color: var(--text-body); }
+  .hvA__title { font-family: var(--font-serif-display); font-weight: 500; font-size: 62px; line-height: 1.03; letter-spacing: -0.025em; color: var(--text-strong); max-width: 15ch; margin: 0; }
+  .hvA__title em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .hvA__sub { margin-top: 22px; font-size: 19px; line-height: 1.55; color: var(--text-body); max-width: 38ch; }
+  .hvA__evcard { position: absolute; right: 64px; top: 50%; transform: translateY(-50%) rotate(2.5deg); width: 300px; background: var(--surface-card); border: 1px solid var(--border-soft); border-radius: var(--radius-xl); box-shadow: var(--shadow-xl); padding: 20px; }
+  .hvA__evcard .q { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+  .hvA__evcard .a { font-family: var(--font-serif-display); font-size: 18px; line-height: 1.35; color: var(--text-strong); margin: 9px 0 13px; }
+  .hvA__cite { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: 11px; color: var(--accent-press); background: var(--accent-soft); border-radius: var(--radius-sm); padding: 6px 9px; }
+
+  /* ---- B: urbanist heavy tool ---- */
+  .hvB { background:
+      linear-gradient(0deg, var(--sand-100), var(--sand-100)); color: var(--ink-700); }
+  .hvB__eyebrow { color: var(--spark-deep); }
+  .hvB__title { font-family: var(--font-geo-display); font-weight: 900; font-size: 78px; line-height: 0.92; letter-spacing: -0.03em; text-transform: lowercase; color: var(--ink-900); max-width: 13ch; margin: 0; }
+  .hvB__title span { color: var(--accent); }
+  .hvB__title .sp { color: var(--spark-deep); }
+  .hvB__sub { margin-top: 22px; font-family: var(--font-mono); font-size: 14px; line-height: 1.7; color: var(--ink-600); max-width: 46ch; }
+  .hvB__chips { margin-top: 26px; display: flex; gap: 9px; flex-wrap: wrap; }
+  .hvB__dash { position: absolute; right: 60px; bottom: 56px; width: 220px; height: 130px; border: 2px dashed var(--border-strong); border-radius: var(--radius-lg); background: var(--cream-100); display: grid; place-items: center; transform: rotate(-3deg); font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); text-align: center; line-height: 1.6; }
+
+  /* ---- C: holographic data ---- */
+  .hvC { background: radial-gradient(130% 130% at 85% 0%, var(--holo-700) 0%, var(--holo-800) 45%, var(--holo-900) 100%); color: var(--holo-text); }
+  .hvC__eyebrow { color: var(--spark); }
+  .hvC__title { font-family: var(--font-serif-display); font-weight: 500; font-size: 60px; line-height: 1.04; letter-spacing: -0.02em; color: #fff; max-width: 15ch; margin: 0; }
+  .hvC__title em { font-style: italic; font-weight: 400; color: var(--spark); }
+  .hvC__sub { margin-top: 22px; font-size: 18px; line-height: 1.55; color: color-mix(in srgb, var(--holo-text) 82%, transparent); max-width: 40ch; }
+  .hvC__panel { position: absolute; right: 60px; top: 50%; transform: translateY(-50%); width: 320px; background: rgba(8,18,40,0.6); border: 1px solid color-mix(in srgb, var(--spark) 28%, transparent); border-radius: var(--radius-lg); padding: 20px; backdrop-filter: blur(6px); }
+  .hvC__panel .row { display: flex; align-items: baseline; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; color: var(--spark); margin-bottom: 14px; }
+  .hvC__big { font-family: var(--font-serif-display); font-size: 44px; color: #fff; line-height: 1; }
+  .hvC__big em { font-style: italic; color: var(--spark); font-size: 0.5em; }
+  .hvC__spark { margin-top: 16px; height: 54px; display: block; width: 100%; }
+  .hvC__legend { margin-top: 10px; font-family: var(--font-mono); font-size: 10px; color: color-mix(in srgb, var(--holo-text) 60%, transparent); display: flex; justify-content: space-between; }
+  .av-avail-sm { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: 12px; padding: 4px 10px; border-radius: 999px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel">
+const { Button, Tag } = window.AvdeevDesignSystem_a8f605;
+
+function HeroA() {
+  return (
+    <div className="hv hvA av-glow">
+      <div style={{ maxWidth: "60%" }}>
+        <span className="hv__eyebrow" style={{ color: "var(--text-muted)" }}>
+          <span className="av-avail-sm" style={{ background: "var(--surface-card)", border: "1px solid var(--border-soft)", color: "var(--text-muted)" }}><span className="hv__pulse" /> available</span>
+          ai &amp; quant engineer
+        </span>
+        <h1 className="hvA__title">i build agents that <em>cite</em> their evidence.</h1>
+        <p className="hvA__sub">file-first. evidence-backed. claims that prove themselves.</p>
+        <div className="hv__cta">
+          <Button variant="primary" size="lg">see the work</Button>
+          <Button variant="outline" size="lg">get in touch</Button>
+        </div>
+      </div>
+      <div className="hvA__evcard">
+        <div className="q">q: what drove q3 revenue?</div>
+        <div className="a">grew 18% on enterprise renewals, not new logos.</div>
+        <span className="hvA__cite">✓ cited · 2 sources</span>
+      </div>
+    </div>
+  );
+}
+
+function HeroB() {
+  return (
+    <div className="hv hvB av-grain">
+      <span className="hv__eyebrow hvB__eyebrow"><span className="hv__pulse" /> qa brain, builder hands</span>
+      <h1 className="hvB__title">find the <span className="sp">edge</span>.<br/>ship the <span>proof</span>.</h1>
+      <p className="hvB__sub">// agents that cite their evidence + trading tools that find the edge. local-first, reproducible, backtested by default.</p>
+      <div className="hvB__chips">
+        <Tag tone="accent">python</Tag>
+        <Tag tone="spark">rust</Tag>
+        <Tag tone="neutral">pytorch</Tag>
+        <Tag tone="outline">+1.8 sharpe</Tag>
+      </div>
+      <div className="hv__cta">
+        <Button variant="primary" size="lg">view tools</Button>
+        <Button variant="secondary" size="lg">read the log</Button>
+      </div>
+      <div className="hvB__dash">every claim<br/>ships with<br/>its backtest</div>
+    </div>
+  );
+}
+
+function HeroC() {
+  return (
+    <div className="hv hvC">
+      <div style={{ maxWidth: "58%" }}>
+        <span className="hv__eyebrow hvC__eyebrow"><span className="hv__pulse" style={{ background: "var(--spark)" }} /> live trading book</span>
+        <h1 className="hvC__title">trading tools that <em>find</em> the edge.</h1>
+        <p className="hvC__sub">intraday signals, every one shipped with its backtest. the quant half of qa brain, builder hands.</p>
+        <div className="hv__cta">
+          <Button variant="primary" size="lg" style={{ background: "var(--spark)", color: "var(--holo-900)" }}>see the signals</Button>
+        </div>
+      </div>
+      <div className="hvC__panel">
+        <div className="row"><span>polyKalshi · live</span><span>14 mo</span></div>
+        <div className="hvC__big">+1.8<em> sharpe</em></div>
+        <svg className="hvC__spark" viewBox="0 0 300 54" preserveAspectRatio="none" fill="none">
+          <polyline points="0,44 30,40 60,42 90,32 120,34 150,24 180,26 210,16 240,18 270,8 300,6" stroke="#34bfff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <polyline points="0,48 30,47 60,49 90,45 120,47 150,43 180,46 210,41 240,44 270,39 300,40" stroke="rgba(225,245,255,0.35)" strokeWidth="1.5" strokeLinecap="round"/>
+        </svg>
+        <div className="hvC__legend"><span>jan</span><span>equity curve</span><span>now</span></div>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <window.DesignCanvas>
+      <window.DCSection id="heroes" title="hero directions" subtitle="three takes on the avdeev landing — pick one or mix">
+        <window.DCArtboard id="a" label="A · serif editorial (current)" width={1120} height={600}><HeroA /></window.DCArtboard>
+        <window.DCArtboard id="b" label="B · urbanist heavy — tool" width={1120} height={600}><HeroB /></window.DCArtboard>
+        <window.DCArtboard id="c" label="C · holographic data — quant" width={1120} height={600}><HeroC /></window.DCArtboard>
+      </window.DCSection>
+    </window.DesignCanvas>
+  );
+}
+const mount = () => ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+if (window.DesignCanvas) mount(); else window.addEventListener("load", mount);
+</script>
+</body>
+</html>

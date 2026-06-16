@@ -1,0 +1,22 @@
+/* ============================================================
+   avdeev — fonts
+   Loaded from Google Fonts CDN (no binaries uploaded).
+   SUBSTITUTION FLAG: these are my picks for the warm-elegant
+   serif-display + clean-humanist-sans + code-mono brief.
+   Swap freely by replacing this import + the family vars.
+     - display:  Newsreader (warm editorial serif, real italics)
+     - geo-alt:  Urbanist (heavy geometric display — the "engineer"
+                 voice from david-hckh.com; weights 800/900 for big titles)
+     - sans:     Hanken Grotesk (soft humanist sans)
+     - mono:     JetBrains Mono (credible code/metadata mono;
+                 stands in for david's self-hosted ProFontWindows)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Urbanist:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --font-serif-display: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-geo-display: "Urbanist", ui-sans-serif, system-ui, sans-serif; /* heavy geometric alt (david-hckh.com) */
+  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
