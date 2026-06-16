@@ -600,7 +600,7 @@ function FunAgentScene() {
 
 /* owns the demand-loop kicks + pointer wiring (mirror hero Driver) */
 function Driver({ container }) {
-  const { invalidate, advance, setSize } = useThree();
+  const { invalidate, advance, setSize, setDpr } = useThree();
   React.useEffect(() => {
     let alive = true;
     const pump = () => {
@@ -670,11 +670,26 @@ function Driver({ container }) {
     const onVis = () => { if (document.visibilityState === "visible") pump(); };
     const onResize = () => pump();
 
+    // ARB-51: re-cap the device pixel ratio when the viewport class flips (e.g. a
+    // phone loaded in landscape >760px then rotated to portrait was left pinned at
+    // DPR 2). setDpr re-applies the pixel ratio in place — no remount. The bevel/
+    // sphere detail tiers (SMOOTH/SPHSEG/SHADOW_RES) are baked into the meshes, so
+    // re-tiering them needs a scene remount; that is delegated to ARB-32.
+    const onTier = () => {
+      const cap = Math.min(window.devicePixelRatio || 1,
+        (window.matchMedia && window.matchMedia("(max-width: 760px)").matches) ? 1.5 : 2);
+      try { if (setDpr) setDpr(cap); } catch (e) {}
+      pump();
+    };
+    const mqSmall = window.matchMedia ? window.matchMedia("(max-width: 760px)") : null;
+
     container.addEventListener("pointermove", onMove, { passive: true });
     container.addEventListener("pointerleave", onLeave);
     container.addEventListener("pointerdown", onDown);
     document.addEventListener("visibilitychange", onVis);
     window.addEventListener("resize", onResize);
+    window.addEventListener("orientationchange", onTier);
+    if (mqSmall && mqSmall.addEventListener) mqSmall.addEventListener("change", onTier);
     const ro = new ResizeObserver(() => pump());
     ro.observe(container);
 
@@ -687,6 +702,8 @@ function Driver({ container }) {
       container.removeEventListener("pointerdown", onDown);
       document.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("orientationchange", onTier);
+      if (mqSmall && mqSmall.removeEventListener) mqSmall.removeEventListener("change", onTier);
       ro.disconnect();
       if (io) io.disconnect();
     };
