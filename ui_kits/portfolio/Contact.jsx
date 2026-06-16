@@ -29,7 +29,10 @@ function Contact() {
         </div>
         <footer className="av-footer">
           <div className="av-footer__note">{D.wordmark} — built <em>file-first</em>, of course.</div>
-          <div className="av-footer__note">© 2026 {D.name}</div>
+          {/* ARB-83: the proper name is the ONE deliberate capitalized exception to the
+              all-lowercase voice — small-caps marks it as an intentional typographic
+              choice, not a stray capital. */}
+          <div className="av-footer__note">© 2026 <span style={{ fontVariant: "small-caps", letterSpacing: "0.03em" }}>{D.name}</span></div>
         </footer>
       </div>
     </section>

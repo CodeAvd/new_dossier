@@ -3,6 +3,10 @@
    for the kit; swap with real history. */
 
 window.AV_DATA = {
+  // LOWERCASE-VOICE RULE (ARB-83): all UI copy is lowercase by design. The single
+  // sanctioned exception is the proper name below — it stays correctly capitalized and
+  // is rendered as small-caps in the footer (Contact.jsx) so the exception reads as a
+  // deliberate typographic choice, not an inconsistency.
   name: "Grigorii Avdeev",
   wordmark: "avdeev",
   role: "ai & quant engineer",
