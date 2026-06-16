@@ -49,10 +49,11 @@ button:focus-visible {
   display: flex; align-items: center; justify-content: space-between;
   padding: 16px clamp(1.25rem, 4vw, 3rem);
   transition: background var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out), backdrop-filter var(--dur-base);
+  will-change: transform; /* ARB-85: promote to its own layer so the scrolled backdrop-filter composites instead of re-painting the page each scroll frame */
 }
 .av-header[data-scrolled="true"] {
   background: color-mix(in srgb, var(--bg-base) 78%, transparent);
-  backdrop-filter: blur(14px) saturate(1.2);
+  backdrop-filter: blur(8px) saturate(1.2); /* ARB-85: was blur(14px) — backdrop-filter is among the most expensive scroll-frame paints */
   box-shadow: 0 1px 0 var(--divider);
 }
 .av-logo { display: flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; color: inherit; }
