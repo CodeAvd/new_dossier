@@ -14,7 +14,7 @@ function Contact() {
               <h2 className="av-contact__title">let's build something that <em>proves itself.</em></h2>
               <p className="av-contact__blurb">{D.contact.blurb}</p>
               <div style={{ marginTop: 30 }}>
-                <Button variant="primary" size="lg" as="a" href={"mailto:" + D.contact.email}>email me</Button>
+                <Button variant="primary" size="lg" as="a" href={"mailto:" + D.contact.email}>send a hard problem</Button>
               </div>
             </div>
             <div className="av-contact__links">

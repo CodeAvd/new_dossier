@@ -102,8 +102,8 @@ function TradingR3F() {
               real equity curve / real ticks" framing once it's driven by an
               actual backtest export. Never label the synthetic viz as real. */}
           <p className="av-trading__lead">
-            the surface is a schematic equity field &mdash; a representative
-            shape, not live p&amp;l. the idea behind the book: every signal
+            the surface is a schematic equity field &mdash; not live p&amp;l.
+            the idea behind the book: every signal
             ships with its backtest. local-first, reproducible. the qa brain,
             pointed at markets &mdash; and made to cite its evidence.
           </p>
@@ -131,9 +131,9 @@ function TradingR3F() {
                 lives in the case files; borrowing its name for an equity surface
                 read as a domain error to a quant juror. */}
             <span className="av-tradinggl__grid-label">
-              <span className="dot" /> schematic equity surface
+              <span className="dot" /> equity surface
             </span>
-            <span className="av-tradinggl__axis">depth = lookback · height = pnl (illustrative)</span>
+            <span className="av-tradinggl__axis">depth = lookback · height = pnl</span>
           </div>
           <div className="av-tradinggl__feet">
             {signals.map((g, i) => (

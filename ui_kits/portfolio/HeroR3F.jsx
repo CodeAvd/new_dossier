@@ -84,10 +84,10 @@ function HeroR3F() {
           </div>
           <div className="av-herogl__cta">
             <Button variant="primary" size="lg" onClick={() => go("work")}>
-              see the work
+              see the proof
             </Button>
             <Button variant="secondary" size="lg" onClick={() => go("trading")}>
-              the trading book
+              read the book
             </Button>
           </div>
         </div>
