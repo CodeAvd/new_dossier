@@ -123,6 +123,8 @@ function TradingR3F() {
               ref={mountRef}
               aria-hidden="true"
             />
+            {/* ARB-74: first-load cue that the surface is interactive (auto-fades) */}
+            <span className="av-tradinggl__hint" aria-hidden="true">hover to tilt</span>
             {/* ARB-95: label the surface for its actual domain — a schematic
                 equity/backtest field (matches the lead copy + the sharpe/track-
                 record stats above). polyKalshi is a cross-market ARB scanner and

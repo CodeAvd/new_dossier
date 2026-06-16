@@ -249,7 +249,26 @@
   );
   border: 1px solid color-mix(in srgb, var(--spark) 22%, transparent);
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.42);
+  cursor: grab; /* ARB-74: signal the hover/move-to-tilt interaction */
 }
+.av-tradinggl__viz:active { cursor: grabbing; }
+/* ARB-74: a self-dismissing first-load "hover to tilt" cue over the surface,
+   so the static-looking canvas reveals it's interactive (auto-fades after ~5s). */
+.av-tradinggl__hint {
+  position: absolute; left: 50%; top: 50%; z-index: 3; pointer-events: none;
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--spark); background: color-mix(in srgb, #04101c 62%, transparent);
+  border: 1px solid color-mix(in srgb, var(--spark) 30%, transparent);
+  border-radius: var(--radius-pill); padding: 7px 13px; backdrop-filter: blur(4px);
+  opacity: 0; animation: avTradeHint 5.2s ease forwards;
+}
+@keyframes avTradeHint {
+  0% { opacity: 0; transform: translate(-50%, calc(-50% + 6px)); }
+  12%, 62% { opacity: 1; transform: translate(-50%, -50%); }
+  100% { opacity: 0; transform: translate(-50%, calc(-50% - 4px)); }
+}
+@media (prefers-reduced-motion: reduce) { .av-tradinggl__hint { display: none; } }
 .av-tradinggl__canvas {
   position: absolute;
   inset: 0;
