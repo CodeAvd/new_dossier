@@ -241,7 +241,9 @@ function HeroScene({ container }) {
     // restrained: a faint cyan sheen on the brightest crests only — not a glow bath.
     // ARB-8: guarded (module present + WebGL2) AND wrapped in a boundary, so a
     // compose failure degrades to the raw field instead of blanking the canvas.
-    EffectComposer && Bloom && HAS_WEBGL2
+    // ARB-50: full-screen Bloom is the single largest mobile GPU cost — drop the pass
+    // entirely on SMALL (raw points still render + autoplay), keep it on larger screens.
+    EffectComposer && Bloom && HAS_WEBGL2 && !SMALL
       ? h(
           ComposeBoundary,
           null,

@@ -589,6 +589,9 @@ function FunAgentScene() {
     // empty warm space behind melt into a gentle dreamy bokeh. Cheap (small
     // bokehScale, low internal res); renders under frameloop="demand" through
     // the same rAF/invalidate pump as the hero's EffectComposer/Bloom. ----
+    // ARB-50: drop the DepthOfField pass entirely on SMALL (the costliest mobile
+    // pass); ContactShadows already steps to 256 there and the bot still reads crisp.
+    !SMALL &&
     h(
       EffectComposer,
       { multisampling: 0, enableNormalPass: false },
