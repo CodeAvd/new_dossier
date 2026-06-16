@@ -77,11 +77,18 @@ const sim = {
   ptr: { x: 0, z: Z0, tx: 0, tz: Z0, active: 0, tactive: 0 },
   animate: !REDUCED,
 };
+/* ARB-61: element-level demand gate. The Driver's IntersectionObserver flips
+   this as the hero canvas enters/leaves the viewport; BOTH the rAF pump and the
+   useFrame self-invalidate honor it, so an off-screen hero stops rendering
+   entirely (its last frame stays composed) instead of paying the field rewrite
+   every frame for content the visitor has already scrolled past. */
+let inView = true;
 function resetSim() {
   sim.t = WARM;
   sim.ptr.x = 0; sim.ptr.z = Z0; sim.ptr.tx = 0; sim.ptr.tz = Z0;
   sim.ptr.active = 0; sim.ptr.tactive = 0;
   sim.animate = !REDUCED;
+  inView = true;
 }
 
 function cssColor(name, fb) {
@@ -200,7 +207,7 @@ function HeroScene({ container }) {
     state.camera.position.x += (sim.ptr.x * 0.12 - state.camera.position.x) * kCam;
     state.camera.lookAt(0, -2, Z0);
 
-    if (sim.animate) state.invalidate();
+    if (sim.animate && inView) state.invalidate();
   });
 
   return h(
@@ -280,10 +287,23 @@ function Driver({ container }) {
     let rafId = null;
     const tick = () => {
       if (!alive) return;
-      if (sim.animate && document.visibilityState === "visible") invalidate();
+      if (sim.animate && inView && document.visibilityState === "visible") invalidate();
       rafId = requestAnimationFrame(tick);
     };
     rafId = requestAnimationFrame(tick);
+
+    // ARB-61: element-level visibility — only pump while the hero canvas is on
+    // screen. Off-screen its last frame stays composed (frameloop="demand" never
+    // clears it); scrolling back into view re-arms with an immediate repaint.
+    let io = null;
+    if (typeof IntersectionObserver !== "undefined") {
+      io = new IntersectionObserver((entries) => {
+        const was = inView;
+        inView = entries.some((e) => e.isIntersecting);
+        if (inView && !was) pump();
+      }, { threshold: 0 });
+      io.observe(container);
+    }
 
     // pointer drives the field (window-wide, like the vanilla build)
     const onMove = (e) => {
@@ -317,6 +337,7 @@ function Driver({ container }) {
       document.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("resize", onResize);
       ro.disconnect();
+      if (io) io.disconnect();
     };
   }, [container, invalidate, advance, setSize]);
   return null;

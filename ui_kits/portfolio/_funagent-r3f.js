@@ -155,12 +155,19 @@ const sim = {
     blinkT: 2.4,
   },
 };
+/* ARB-61: element-level demand gate. The Driver's IntersectionObserver flips
+   this as the funagent canvas enters/leaves the viewport; BOTH the rAF pump and
+   the useFrame self-invalidate honor it, so the room (the heaviest, ~80-draw
+   scene) stops rendering entirely when scrolled past instead of running its
+   autonomy loop full-tilt off-screen. */
+let inView = true;
 function resetSim() {
   sim.t = WARM;
   sim.ptr.x = 0; sim.ptr.y = 0; sim.ptr.tx = 0; sim.ptr.ty = 0;
   sim.active = 0; sim.tactive = 0;
   sim.look.x = 0; sim.look.y = 0; sim.look.vx = 0; sim.look.vy = 0;
   sim.animate = !REDUCED;
+  inView = true;
   const A = sim.audit;
   A.phase = "read"; A.phaseT = DUR.read * 0.55;
   A.done = 0; A.stamped = false; A.stampFired = false; A.badgeT = 0;
@@ -444,7 +451,7 @@ function FunAgentScene() {
     // keep pumping while animating (the autonomy loop, the spring, the
     // confetti + card tweens all request the next frame -> a gentle, always-
     // working idle pump; settles only under reduced-motion).
-    if (sim.animate) state.invalidate();
+    if (sim.animate && inView) state.invalidate();
   });
 
   // pre-build the done-pile card slots (revealed imperatively per frame)
@@ -615,12 +622,35 @@ function Driver({ container }) {
     // animating" contract. Under reduced-motion sim.animate is false, so this
     // never invalidates and the single composed static frame stays put.
     let rafId = null;
-    const tick = () => {
+    // ARB-61: cap the always-busy idle at ~32fps. The funagent autonomy loop
+    // never truly rests (phase machine + spring + confetti keep running), so
+    // pumping every rAF burns its ~80-draw cost at the full display rate for
+    // motion that reads identically at ~32fps. useFrame's delta stays wall-clock
+    // so the animation remains time-correct, just cheaper. Direct invalidate()s
+    // from pointer/visibility below are NOT throttled (interaction stays crisp).
+    let lastPump = 0;
+    const FA_MIN_DT = 1000 / 32;
+    const tick = (now) => {
       if (!alive) return;
-      if (sim.animate && document.visibilityState === "visible") invalidate();
+      if (sim.animate && inView && document.visibilityState === "visible") {
+        if (now - lastPump >= FA_MIN_DT) { lastPump = now; invalidate(); }
+      }
       rafId = requestAnimationFrame(tick);
     };
     rafId = requestAnimationFrame(tick);
+
+    // ARB-61: element-level visibility — only pump while the funagent canvas is
+    // on screen. Off-screen its last frame stays composed; scrolling back in
+    // re-arms with an immediate repaint.
+    let io = null;
+    if (typeof IntersectionObserver !== "undefined") {
+      io = new IntersectionObserver((entries) => {
+        const was = inView;
+        inView = entries.some((e) => e.isIntersecting);
+        if (inView && !was) pump();
+      }, { threshold: 0 });
+      io.observe(container);
+    }
 
     // pointer steers the cube-bot's gaze (container-relative, clamped to
     // [-1..1]). invalidate() on every move so the demand loop renders the
@@ -658,6 +688,7 @@ function Driver({ container }) {
       document.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("resize", onResize);
       ro.disconnect();
+      if (io) io.disconnect();
     };
   }, [container, invalidate, advance, setSize]);
   return null;

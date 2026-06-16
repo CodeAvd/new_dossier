@@ -49,10 +49,16 @@ const sim = {
   tilt: { x: 0, y: 0, tx: 0, ty: 0 },
   animate: !REDUCED,
 };
+/* ARB-61: element-level demand gate. The Driver's IntersectionObserver flips
+   this as the trading canvas enters/leaves the viewport; BOTH the rAF pump and
+   the useFrame self-invalidate honor it, so an off-screen terrain stops the
+   full per-frame vertex rewrite instead of paying it for content scrolled past. */
+let inView = true;
 function resetSim() {
   sim.t = WARM;
   sim.tilt.x = 0; sim.tilt.y = 0; sim.tilt.tx = 0; sim.tilt.ty = 0;
   sim.animate = !REDUCED;
+  inView = true;
 }
 
 function cssColor(name, fb) {
@@ -234,7 +240,7 @@ function TradingScene({ equity, signals }) {
       }
     }
 
-    if (sim.animate) state.invalidate();
+    if (sim.animate && inView) state.invalidate();
   });
 
   return h(
@@ -357,10 +363,23 @@ function Driver({ container }) {
     let rafId = null;
     const tick = () => {
       if (!alive) return;
-      if (sim.animate && document.visibilityState === "visible") invalidate();
+      if (sim.animate && inView && document.visibilityState === "visible") invalidate();
       rafId = requestAnimationFrame(tick);
     };
     rafId = requestAnimationFrame(tick);
+
+    // ARB-61: element-level visibility — only pump while the trading canvas is
+    // on screen. Off-screen its last frame stays composed; scrolling back in
+    // re-arms with an immediate repaint.
+    let io = null;
+    if (typeof IntersectionObserver !== "undefined") {
+      io = new IntersectionObserver((entries) => {
+        const was = inView;
+        inView = entries.some((e) => e.isIntersecting);
+        if (inView && !was) pump();
+      }, { threshold: 0 });
+      io.observe(container);
+    }
 
     // pointer tilts the terrain (container-relative, like the vanilla build)
     const onMove = (e) => {
@@ -386,6 +405,7 @@ function Driver({ container }) {
       document.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("resize", onResize);
       ro.disconnect();
+      if (io) io.disconnect();
     };
   }, [container, invalidate, advance, setSize]);
   return null;
