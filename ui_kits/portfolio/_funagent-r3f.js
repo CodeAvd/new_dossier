@@ -768,12 +768,17 @@ function mountFunAgent(container, opts) {
   // 'resize' events until the GL root exists, forcing the measurement.
   let kicks = 0;
   let kickTimer = null;
+  const KICK_CAP = 5;
+  // ARB-84: fire the synthetic-resize poke ONLY while hidden/throttled (the
+  // retired preview case); a visible tab composes the GL root via the container
+  // ResizeObserver on frame 1. Capped at ~5 (was 40) to kill the load-time
+  // reflow storm (×3 scenes ≈ 120 global resizes before).
   const forceMeasure = () => {
-    try { window.dispatchEvent(new Event("resize")); } catch (e) {}
-    kicks++;
-    if (!window.__r3fFunAgent && kicks < 40) {
-      kickTimer = setTimeout(forceMeasure, 70);
+    if (window.__r3fFunAgent) return;
+    if (document.visibilityState !== "visible") {
+      try { window.dispatchEvent(new Event("resize")); } catch (e) {}
     }
+    if (++kicks < KICK_CAP) kickTimer = setTimeout(forceMeasure, 120);
   };
   kickTimer = setTimeout(forceMeasure, 0);
 

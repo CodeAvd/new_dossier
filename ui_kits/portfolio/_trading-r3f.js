@@ -487,13 +487,21 @@ function mountTrading(container, opts) {
   // root exists.
   let kicks = 0;
   let kickTimer = null;
+  const KICK_CAP = 5;
+  // ARB-84: on a real visible tab the container ResizeObserver (above) composes
+  // the GL root on frame 1, so the global synthetic-resize storm (a retired
+  // hidden-tab preview hack — each global resize forced every scene to re-measure,
+  // ×3 ≈ 120 reflows at load) is pure churn. Fire the poke ONLY while hidden, and
+  // cap it at ~5 either way; the cheap poll still guards the blank-box fallback.
   const forceMeasure = () => {
-    try { window.dispatchEvent(new Event("resize")); } catch (e) {}
-    kicks++;
-    if (!window.__r3fTrading && kicks < 40) {
-      kickTimer = setTimeout(forceMeasure, 70);
+    if (window.__r3fTrading) return; // GL root composed — stop
+    if (document.visibilityState !== "visible") {
+      try { window.dispatchEvent(new Event("resize")); } catch (e) {}
+    }
+    if (++kicks < KICK_CAP) {
+      kickTimer = setTimeout(forceMeasure, 120);
     } else if (!window.__r3fTrading) {
-      // gave up after 40 kicks; GL root never composed — never ship a blank box
+      // exhausted the capped kicks; GL root never composed — never ship a blank box
       const host = container.closest(".av-tradinggl__viz") || container.parentElement;
       if (host) { host.classList.add("av-gl-failed"); host.classList.remove("av-gl-warming"); }
     }
