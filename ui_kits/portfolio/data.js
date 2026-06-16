@@ -9,7 +9,19 @@ window.AV_DATA = {
   // ARB-76: removed the orphaned `hero` copy block — the live HeroR3F.jsx hardcodes
   // its own (richer) hero copy and there is no longer a vanilla Hero.jsx consuming this,
   // so it was a stale, divergent source-of-truth that changed nothing on the shipped page.
-  nav: ["work", "trading", "about", "experience", "contact"],
+  // ARB-97: nav in RENDER ORDER, reaching every content section (was mis-ordered
+  // and omitted funagent + stack). Render order: about → work → funagent → trading
+  // → experience → stack. #top is the logo's target; contact is the prominent
+  // "let's talk" CTA + footer, so it isn't duplicated as a pill (keeps the bar from
+  // overflowing). Objects so the label can differ from the section id.
+  nav: [
+    { id: "about", label: "about" },
+    { id: "work", label: "work" },
+    { id: "funagent", label: "agent" },
+    { id: "trading", label: "trading" },
+    { id: "experience", label: "experience" },
+    { id: "stack", label: "stack" },
+  ],
   // TODO(metrics): schematic placeholders — NONE of these are measured yet.
   // Drop in real figures (and restore the units: %, ms, /d) once the evals
   // and the live book actually back them. Never ship invented numbers here.
