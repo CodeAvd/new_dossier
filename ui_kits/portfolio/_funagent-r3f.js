@@ -270,9 +270,14 @@ function FunAgentScene() {
     }
 
     // ---- gaze: cursor when engaged, else looks at its own work ----
-    sim.ptr.x += (sim.ptr.tx - sim.ptr.x) * 0.16;
-    sim.ptr.y += (sim.ptr.ty - sim.ptr.y) * 0.16;
-    sim.active += (sim.tactive - sim.active) * 0.08;
+    // ARB-40: frame-rate-independent easing (was a raw *0.16 / *0.08 per-frame lerp,
+    // which converged ~2.4x faster at 144Hz than 60Hz). Same form the hero/trading
+    // Drivers already use; dt is clamped above so a stall can't over-shoot.
+    const kP = 1 - Math.pow(1 - 0.16, dt * 60);
+    sim.ptr.x += (sim.ptr.tx - sim.ptr.x) * kP;
+    sim.ptr.y += (sim.ptr.ty - sim.ptr.y) * kP;
+    const kA = 1 - Math.pow(1 - 0.08, dt * 60);
+    sim.active += (sim.tactive - sim.active) * kA;
 
     const ph = A.phase, pt = A.phaseT;
     let gx = 0, gy = 0;
