@@ -97,7 +97,7 @@ function FunAgent() {
       <div className="container av-funagent__inner reveal" ref={ref}>
         <div className="av-funagent__head">
           <div className="av-sec-eyebrow" style={{ color: "var(--terra-700)" }}>
-            <span style={{ color: "var(--terra-600)" }}>·</span> autonomous qa assistant
+            <span className="av-sec-num" style={{ color: "var(--terra-600)" }}>03</span> autonomous qa assistant
           </div>
           <h2 className="av-funagent__title">
             meet the agent <em>that runs qa</em> while you watch.

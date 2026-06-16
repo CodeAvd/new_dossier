@@ -92,7 +92,7 @@ function TradingR3F() {
       <div className="container av-trading__inner reveal" ref={ref}>
         <div className="av-trading__head">
           <div className="av-sec-eyebrow" style={{ color: "var(--spark)" }}>
-            <span style={{ color: "var(--spark)" }}>·</span> the quant half
+            <span className="av-sec-num" style={{ color: "var(--spark)" }}>04</span> the quant half
           </div>
           <h2 className="av-trading__title">
             tools that <em>find</em> the edge &mdash; and prove it.
