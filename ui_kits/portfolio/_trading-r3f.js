@@ -225,8 +225,11 @@ function TradingScene({ equity, signals }) {
     sim.tilt.y += (sim.tilt.ty - sim.tilt.y) * kTilt;
 
     if (groupRef.current) {
-      groupRef.current.rotation.y = Math.sin(t * 0.12) * 0.32 + sim.tilt.x;
-      groupRef.current.rotation.x = -0.06 + sim.tilt.y;
+      // ARB-66: layer a slow second harmonic + a gentle x-drift so the auto-orbit
+      // reads as organic drift, not a constant-amplitude screensaver sine.
+      groupRef.current.rotation.y =
+        Math.sin(t * 0.12) * 0.32 + Math.sin(t * 0.047 + 1.3) * 0.11 + sim.tilt.x;
+      groupRef.current.rotation.x = -0.06 + Math.sin(t * 0.08) * 0.02 + sim.tilt.y;
     }
     // de-synced node shimmer: phase-offset each node by its index so the
     // ridge twinkles instead of blinking in unison (same amplitude & speed)
