@@ -113,9 +113,8 @@ function TradingScene({ equity, signals }) {
       colors.holoLine.copy(cssColor("--holo-500", "#2b5a93"));
       invalidate();
     };
-    const mo = new MutationObserver(recolor);
-    mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-    return () => mo.disconnect();
+    window.addEventListener("theme-change", recolor);
+    return () => window.removeEventListener("theme-change", recolor);
   }, [colors, invalidate]);
 
   function sampleEquity(u) {

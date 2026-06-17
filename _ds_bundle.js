@@ -431,6 +431,7 @@ function ThemeToggle({
       try {
         localStorage.setItem("av-theme", t);
       } catch (e) {}
+      window.dispatchEvent(new CustomEvent("theme-change", { detail: { theme: t } }));
     }
     onChange && onChange(next);
   };

@@ -68,6 +68,7 @@ export function ThemeToggle({ checked, onChange, className = "", ...props }) {
       const t = next ? "dark" : "light";
       document.documentElement.setAttribute("data-theme", t);
       try { localStorage.setItem("av-theme", t); } catch (e) {}
+      window.dispatchEvent(new CustomEvent("theme-change", { detail: { theme: t } }));
     }
     onChange && onChange(next);
   };

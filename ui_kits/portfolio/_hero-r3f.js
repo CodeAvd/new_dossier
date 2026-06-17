@@ -135,9 +135,8 @@ function HeroScene({ container }) {
       colors.spark.copy(cssColor("--spark-accent", "#34bfff"));
       invalidate();
     };
-    const mo = new MutationObserver(recolor);
-    mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-    return () => mo.disconnect();
+    window.addEventListener("theme-change", recolor);
+    return () => window.removeEventListener("theme-change", recolor);
   }, [colors, invalidate]);
 
   // field buffers
