@@ -12,11 +12,11 @@ function About() {
               <p key={i} style={{ fontSize: "var(--fs-lg)", lineHeight: 1.65, color: "var(--text-body)", textWrap: "pretty" }}>{p}</p>
             ))}
           </div>
-          <div className="av-card" style={{ padding: 26, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "18px 14px", alignSelf: "start" }}>
+          <div className="av-card av-fact-grid" style={{ padding: 12 }}>
             {D.about.facts.map((f, i) => (
-              <div key={i} style={{ display: "flex", flexDirection: "column", gap: 5 }}>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-faint)" }}>{f.k}</span>
-                <span style={{ fontFamily: "var(--font-sans)", fontSize: 15, fontWeight: 600, color: "var(--text-strong)" }}>{f.v}</span>
+              <div key={i} className="av-fact">
+                <span className="av-fact__k">{f.k}</span>
+                <span className="av-fact__v">{f.v}</span>
               </div>
             ))}
           </div>

@@ -189,6 +189,16 @@ section[id] { scroll-margin-top: 90px; }
 .av-about-grid { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 3.5rem); align-items: start; }
 @media (min-width: 860px) { .av-about-grid { grid-template-columns: 1.4fr 0.9fr; } }
 
+/* ARB-70: 2x2 fact spec-sheet. Gap collapses to 0 so a single token hairline
+   (not a doubled line across an empty gap) divides the rows/cols; spacing moves
+   into per-cell padding. Mono key over sans value, 0.1em label tracking per ARB-79. */
+.av-fact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-self: start; }
+.av-fact { display: flex; flex-direction: column; gap: 5px; padding: 14px 16px; }
+.av-fact:nth-child(even) { border-left: 1px solid var(--divider); }
+.av-fact:nth-child(n+3) { border-top: 1px solid var(--divider); }
+.av-fact__k { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); }
+.av-fact__v { font-family: var(--font-sans); font-size: 15px; font-weight: 600; color: var(--text-strong); }
+
 /* ============================================================
    PROJECTS
    ============================================================ */
