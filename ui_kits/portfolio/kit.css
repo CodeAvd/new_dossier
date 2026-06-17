@@ -11,20 +11,24 @@
    place when useReveal() adds .is-in on viewport entry. */
 .reveal {
   opacity: 1;
-  transform: translateY(24px);
-  transition: transform var(--dur-slower, .8s) var(--ease-expo, cubic-bezier(.16, 1, .3, 1));
 }
-.reveal.is-in { transform: translateY(0); }
-
-/* subtle stagger for grouped reveal children */
-.reveal.is-in > * { transition: transform var(--dur-slower, .8s) var(--ease-expo, cubic-bezier(.16, 1, .3, 1)); }
+/* ARB-22: the rest-transform now lives on the CHILDREN (not the parent), so the
+   existing nth-child delays drive a real 60/120/180/240ms staggered cascade.
+   Previously the delays applied to a child transform that never existed, so the
+   stagger was dead and the entrance was a single flat block-nudge. Opacity stays 1
+   (never fades 0->1, which freezes in a hidden preview).
+   NOTE: the audit's clip-path wipe was intentionally NOT added — clip-path:inset(0)
+   on the content-grid reveals (.av-projects etc.) would clip the project cards'
+   hover glow/shadow/lift that extend outside the card box. Left as an opt-in. */
+.reveal > * { transform: translateY(24px); transition: transform var(--dur-slower, .8s) var(--ease-expo, cubic-bezier(.16, 1, .3, 1)); }
+.reveal.is-in > * { transform: none; }
 .reveal > *:nth-child(2) { transition-delay: 60ms; }
 .reveal > *:nth-child(3) { transition-delay: 120ms; }
 .reveal > *:nth-child(4) { transition-delay: 180ms; }
 .reveal > *:nth-child(5) { transition-delay: 240ms; }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { transform: none; transition: none; }
+  .reveal > * { transform: none; transition: none; }
 }
 
 /* ---- focus-visible (keyboard-only) ---- */
