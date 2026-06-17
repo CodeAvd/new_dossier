@@ -326,7 +326,7 @@ section[id] { scroll-margin-top: 90px; }
 .av-funagent__viz.av-gl-failed .av-funagent__canvas { display: none; }
 .av-funagent__viz.av-gl-failed { background: radial-gradient(58% 58% at 50% 58%, var(--terra-300), var(--sand-200) 72%); }
 .av-funagent__label { position: absolute; left: 18px; bottom: 16px; z-index: 2; display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--terra-700); pointer-events: none; }
-.av-funagent__label .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--sage); box-shadow: 0 0 0 0 color-mix(in srgb, var(--sage) 60%, transparent); animation: pulse 2.4s infinite; }
+.av-funagent__label .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--sage); box-shadow: 0 0 0 0 color-mix(in srgb, var(--sage) 60%, transparent); animation: pulse 2.4s 0.6s infinite; }
 @media (prefers-reduced-motion: reduce) { .av-funagent__label .dot { animation: none; } }
 
 /* ARB-28/74: the one real interaction made visible + keyboard/SR-operable — a real
