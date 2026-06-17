@@ -364,9 +364,16 @@ function Driver({ container }) {
     // load with no cursor input. Under reduced-motion sim.animate is false, so it
     // never invalidates and the composed static frame stays put (mirrors _funagent-r3f.js).
     let rafId = null;
-    const tick = () => {
+    // ARB-107: cap the idle autoplay pump near 40fps. useFrame still receives
+    // wall-clock delta, so the terrain remains time-correct; only redundant demand
+    // invalidations on high-refresh screens are skipped.
+    let lastPump = 0;
+    const TRADING_MIN_DT = 1000 / 40;
+    const tick = (now) => {
       if (!alive) return;
-      if (sim.animate && inView && document.visibilityState === "visible") invalidate();
+      if (sim.animate && inView && document.visibilityState === "visible") {
+        if (now - lastPump >= TRADING_MIN_DT) { lastPump = now; invalidate(); }
+      }
       rafId = requestAnimationFrame(tick);
     };
     rafId = requestAnimationFrame(tick);
