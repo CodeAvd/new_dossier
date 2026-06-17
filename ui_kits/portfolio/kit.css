@@ -187,7 +187,7 @@ section[id] { scroll-margin-top: 90px; }
 .av-sec-num { color: var(--accent); }
 .av-sec-title { font-family: var(--font-serif-display); font-weight: 500; font-size: var(--fs-display-lg); line-height: 1.1; letter-spacing: -0.02em; color: var(--text-strong); }
 .av-sec-title em { font-style: italic; font-weight: 400; color: var(--accent); }
-.av-sec-lead { margin-top: 18px; font-size: var(--fs-lg); line-height: 1.6; color: var(--text-body); max-width: 56ch; }
+.av-sec-lead { margin-top: 18px; font-size: var(--fs-lg); line-height: 1.6; color: var(--text-body); max-width: var(--measure-lead, 48ch); }
 
 /* ---- about ---- */
 .av-about-grid { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 3.5rem); align-items: start; }
@@ -254,7 +254,7 @@ section[id] { scroll-margin-top: 90px; }
 .av-tl__role { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .av-tl__role h3 { font-family: var(--font-serif-display); font-size: 23px; font-weight: 500; color: var(--text-strong); }
 .av-tl__org { font-family: var(--font-sans); font-size: 15px; color: var(--accent-press); font-weight: 600; }
-.av-tl__note { font-size: var(--fs-base); color: var(--text-muted); line-height: 1.55; max-width: 60ch; }
+.av-tl__note { font-size: var(--fs-base); color: var(--text-muted); line-height: 1.55; max-width: var(--measure-lead, 48ch); }
 
 /* ============================================================
    STACK
@@ -280,7 +280,7 @@ section[id] { scroll-margin-top: 90px; }
 @media (min-width: 920px) { .av-trading__inner { grid-template-columns: 0.95fr 1.05fr; } }
 .av-trading__title { font-family: var(--font-serif-display); font-weight: 500; font-size: var(--fs-display-md); line-height: 1.1; letter-spacing: -0.02em; color: #fff; max-width: 16ch; }
 .av-trading__title em { font-style: italic; font-weight: 400; color: var(--spark); }
-.av-trading__lead { margin-top: 18px; font-size: var(--fs-lg); line-height: 1.6; color: color-mix(in srgb, var(--holo-text) 80%, transparent); max-width: 46ch; }
+.av-trading__lead { margin-top: 18px; font-size: var(--fs-lg); line-height: 1.6; color: color-mix(in srgb, var(--holo-text) 80%, transparent); max-width: var(--measure-lead, 48ch); }
 .av-trading__stats { margin-top: 30px; display: flex; gap: 36px; flex-wrap: wrap; }
 .av-trading__stats .av-stat__value { color: #fff; }
 .av-trading__stats .av-stat__unit { color: var(--spark); }
@@ -316,7 +316,7 @@ section[id] { scroll-margin-top: 90px; }
 @media (min-width: 920px) { .av-funagent__inner { grid-template-columns: 0.95fr 1.05fr; } }
 .av-funagent__title { font-family: var(--font-serif-display); font-weight: 500; font-size: var(--fs-display-md); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink-900); max-width: 16ch; }
 .av-funagent__title em { font-style: italic; font-weight: 400; color: var(--terra-600); }
-.av-funagent__lead { margin-top: 18px; font-size: var(--fs-lg); line-height: 1.6; color: var(--ink-600); max-width: 46ch; }
+.av-funagent__lead { margin-top: 18px; font-size: var(--fs-lg); line-height: 1.6; color: var(--ink-600); max-width: var(--measure-lead, 48ch); }
 .av-funagent__viz {
   /* borderless / full-bleed: NO frame, ring, radius, or drop-shadow — the
      canvas reads as a continuous surface with the section's warm gradient
@@ -391,7 +391,7 @@ section[id] { scroll-margin-top: 90px; }
 @media (min-width: 860px) { .av-contact__inner { grid-template-columns: 1.1fr 0.9fr; align-items: center; } }
 .av-contact__title { font-family: var(--font-serif-display); font-weight: 500; font-size: var(--fs-display-md); line-height: 1.1; letter-spacing: -0.02em; color: var(--text-inverse); }
 .av-contact__title em { font-style: italic; font-weight: 400; color: var(--terra-400); }
-.av-contact__blurb { margin-top: 18px; font-size: var(--fs-lg); line-height: 1.55; color: color-mix(in srgb, var(--text-inverse) 78%, transparent); max-width: 42ch; }
+.av-contact__blurb { margin-top: 18px; font-size: var(--fs-lg); line-height: 1.55; color: color-mix(in srgb, var(--text-inverse) 78%, transparent); max-width: var(--measure-lead, 48ch); }
 .av-contact__links { display: flex; flex-direction: column; gap: 12px; }
 .av-clink { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--text-inverse) 7%, transparent); border: 1px solid color-mix(in srgb, var(--text-inverse) 12%, transparent); color: var(--text-inverse); text-decoration: none; transition: background var(--dur-base), transform var(--dur-base) var(--ease-spring); }
 .av-clink:hover { background: color-mix(in srgb, var(--text-inverse) 13%, transparent); transform: translateX(4px); }

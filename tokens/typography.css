@@ -34,6 +34,10 @@
   --fs-xs:   0.75rem;   /* @kind other */
   --fs-2xs:  0.6875rem; /* @kind other */
 
+  /* ARB-81: one measure system — every body lead shares --measure-lead; long-form body uses --measure-body */
+  --measure-lead: 48ch; /* @kind other */
+  --measure-body: 66ch; /* @kind other */
+
   /* line heights */
   --lh-tight:   1.05;  /* @kind other */
   --lh-snug:    1.18;  /* @kind other */

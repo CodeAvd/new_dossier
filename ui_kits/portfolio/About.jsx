@@ -9,7 +9,7 @@ function About() {
         <div className="reveal av-about-grid" ref={ref}>
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {D.about.body.map((p, i) => (
-              <p key={i} style={{ fontSize: "var(--fs-lg)", lineHeight: 1.65, color: "var(--text-body)", textWrap: "pretty" }}>{p}</p>
+              <p key={i} style={{ fontSize: "var(--fs-lg)", lineHeight: 1.65, color: "var(--text-body)", textWrap: "pretty", maxWidth: "var(--measure-body, 66ch)" }}>{p}</p>
             ))}
           </div>
           <div className="av-card av-fact-grid" style={{ padding: 12 }}>
