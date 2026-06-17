@@ -381,6 +381,14 @@ function hasWebGL() {
     return false;
   }
 }
+function forceLoseContext(state) {
+  try {
+    const gl = state && state.gl;
+    if (!gl) return;
+    if (gl.domElement && gl.domElement.dataset) gl.domElement.dataset.avReclaim = "1";
+    if (gl.forceContextLoss) gl.forceContextLoss();
+  } catch (e) {}
+}
 
 function mountHero(container, opts) {
   opts = opts || {};
@@ -431,6 +439,7 @@ function mountHero(container, opts) {
           const cv = state.gl.domElement;
           cv.addEventListener("webglcontextlost", (e) => {
             e.preventDefault();
+            if (cv.dataset && cv.dataset.avReclaim === "1") return;
             if (host) host.classList.add("av-gl-failed");
           });
           cv.addEventListener("webglcontextrestored", () => {
@@ -478,8 +487,10 @@ function mountHero(container, opts) {
 
   return function cleanup() {
     if (kickTimer) clearTimeout(kickTimer);
+    const state = window.__r3fHero;
+    forceLoseContext(state);
     try { root.unmount(); } catch (e) {}
-    if (window.__r3fHero) delete window.__r3fHero;
+    if (window.__r3fHero === state) delete window.__r3fHero;
   };
 }
 

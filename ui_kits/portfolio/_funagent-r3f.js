@@ -759,6 +759,14 @@ function hasWebGL() {
     return false;
   }
 }
+function forceLoseContext(state) {
+  try {
+    const gl = state && state.gl;
+    if (!gl) return;
+    if (gl.domElement && gl.domElement.dataset) gl.domElement.dataset.avReclaim = "1";
+    if (gl.forceContextLoss) gl.forceContextLoss();
+  } catch (e) {}
+}
 
 function mountFunAgent(container, opts) {
   opts = opts || {};
@@ -817,6 +825,7 @@ function mountFunAgent(container, opts) {
           const cv = state.gl.domElement;
           cv.addEventListener("webglcontextlost", (e) => {
             e.preventDefault();
+            if (cv.dataset && cv.dataset.avReclaim === "1") return;
             if (host) host.classList.add("av-gl-failed");
           });
           cv.addEventListener("webglcontextrestored", () => {
@@ -852,9 +861,11 @@ function mountFunAgent(container, opts) {
 
   return function cleanup() {
     if (kickTimer) clearTimeout(kickTimer);
+    const state = window.__r3fFunAgent;
+    forceLoseContext(state);
     try { root.unmount(); } catch (e) {}
     disposeMatteMaterials();
-    if (window.__r3fFunAgent) delete window.__r3fFunAgent;
+    if (window.__r3fFunAgent === state) delete window.__r3fFunAgent;
   };
 }
 

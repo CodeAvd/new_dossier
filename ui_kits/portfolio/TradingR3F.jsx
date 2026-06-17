@@ -8,55 +8,13 @@ function TradingR3F() {
   const ref = window.useReveal();
   const mountRef = React.useRef(null);
 
-  React.useEffect(() => {
-    const node = mountRef.current;
-    if (!node) return;
-    let cancelled = false;
-    let mountCleanup = null;
-    let teardown = null;
-
-    const start = () => {
-      if (cancelled || !window.AVR3F_TRADING) return false;
-      mountCleanup = window.AVR3F_TRADING.mountTrading(node, {
-        equity: D.equity,
-        signals: D.signals,
-      });
-      return true;
-    };
-    // the ESM module may resolve after this Babel component mounts —
-    // start now if ready, else wait for its ready signal (with a safety poll).
-    const begin = () => {
-      if (!start()) {
-        const onReady = () => start();
-        window.addEventListener("avr3f-trading-ready", onReady, { once: true });
-        const poll = setInterval(() => { if (start()) clearInterval(poll); }, 120);
-        const stopPoll = setTimeout(() => clearInterval(poll), 8000);
-        teardown = () => {
-          clearInterval(poll);
-          clearTimeout(stopPoll);
-          window.removeEventListener("avr3f-trading-ready", onReady);
-          if (mountCleanup) mountCleanup();
-        };
-      } else {
-        teardown = () => { if (mountCleanup) mountCleanup(); };
-      }
-    };
-
-    // PERF-3: below-fold GL — don't instantiate the context until near-viewport.
-    let io = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) {
-        if (io) { io.disconnect(); io = null; }
-        begin();
-      }
-    }, { rootMargin: "200px" });
-    io.observe(node);
-
-    return () => {
-      cancelled = true;
-      if (io) io.disconnect();
-      if (teardown) teardown();
-    };
-  }, []);
+  window.useR3FVisibilityMount(mountRef, {
+    readyEvent: "avr3f-trading-ready",
+    mount: (node) => window.AVR3F_TRADING && window.AVR3F_TRADING.mountTrading(node, {
+      equity: D.equity,
+      signals: D.signals,
+    }),
+  });
 
   const signals = D.feed;
 

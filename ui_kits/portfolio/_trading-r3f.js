@@ -455,6 +455,14 @@ function hasWebGL() {
     return false;
   }
 }
+function forceLoseContext(state) {
+  try {
+    const gl = state && state.gl;
+    if (!gl) return;
+    if (gl.domElement && gl.domElement.dataset) gl.domElement.dataset.avReclaim = "1";
+    if (gl.forceContextLoss) gl.forceContextLoss();
+  } catch (e) {}
+}
 
 function mountTrading(container, opts) {
   opts = opts || {};
@@ -509,6 +517,7 @@ function mountTrading(container, opts) {
           const cv = state.gl.domElement;
           cv.addEventListener("webglcontextlost", (e) => {
             e.preventDefault();
+            if (cv.dataset && cv.dataset.avReclaim === "1") return;
             if (host) host.classList.add("av-gl-failed");
           });
           cv.addEventListener("webglcontextrestored", () => {
@@ -555,9 +564,11 @@ function mountTrading(container, opts) {
 
   return function cleanup() {
     if (kickTimer) clearTimeout(kickTimer);
+    const state = window.__r3fTrading;
+    forceLoseContext(state);
     try { root.unmount(); } catch (e) {}
     disposeDotTexture();
-    if (window.__r3fTrading) delete window.__r3fTrading;
+    if (window.__r3fTrading === state) delete window.__r3fTrading;
   };
 }
 

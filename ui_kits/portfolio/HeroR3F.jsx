@@ -6,37 +6,10 @@ function HeroR3F() {
   const D = window.AV_DATA;
   const mountRef = React.useRef(null);
 
-  React.useEffect(() => {
-    const node = mountRef.current;
-    if (!node) return;
-    let cleanup = null;
-    let cancelled = false;
-
-    const start = () => {
-      if (cancelled || !window.AVR3F) return false;
-      cleanup = window.AVR3F.mountHero(node, {});
-      return true;
-    };
-    // the ESM module may resolve after this Babel component mounts —
-    // mount now if ready, else wait for its ready signal (with a safety poll).
-    if (!start()) {
-      const onReady = () => start();
-      window.addEventListener("avr3f-ready", onReady, { once: true });
-      const poll = setInterval(() => { if (start()) clearInterval(poll); }, 120);
-      const stopPoll = setTimeout(() => clearInterval(poll), 8000);
-      return () => {
-        cancelled = true;
-        clearInterval(poll);
-        clearTimeout(stopPoll);
-        window.removeEventListener("avr3f-ready", onReady);
-        if (cleanup) cleanup();
-      };
-    }
-    return () => {
-      cancelled = true;
-      if (cleanup) cleanup();
-    };
-  }, []);
+  window.useR3FVisibilityMount(mountRef, {
+    readyEvent: "avr3f-ready",
+    mount: (node) => window.AVR3F && window.AVR3F.mountHero(node, {}),
+  });
 
   const go = (id) => {
     const el = document.getElementById(id);

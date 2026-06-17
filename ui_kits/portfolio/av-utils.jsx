@@ -32,6 +32,88 @@ function useReveal(options = {}) {
   return ref;
 }
 
+// R3F visibility ownership: mount near viewport, reclaim the WebGL context when
+// the section stays far offscreen, and remount on re-entry.
+function useR3FVisibilityMount(mountRef, options) {
+  React.useEffect(() => {
+    const node = mountRef.current;
+    if (!node) return;
+
+    const readyEvent = options.readyEvent;
+    const mount = options.mount;
+    const rootMargin = options.rootMargin || "300px 0px";
+    const reclaimDelay = options.reclaimDelay || 700;
+    let cancelled = false;
+    let mounted = false;
+    let mountCleanup = null;
+    let waitCleanup = null;
+    let reclaimTimer = null;
+
+    const clearWait = () => {
+      if (waitCleanup) waitCleanup();
+      waitCleanup = null;
+    };
+    const clearReclaim = () => {
+      if (reclaimTimer) clearTimeout(reclaimTimer);
+      reclaimTimer = null;
+    };
+    const tryMount = () => {
+      if (cancelled || mounted) return true;
+      const cleanup = mount(node);
+      if (!cleanup) return false;
+      mountCleanup = cleanup;
+      mounted = true;
+      return true;
+    };
+    const armReadyMount = () => {
+      clearReclaim();
+      if (tryMount()) { clearWait(); return; }
+      clearWait();
+      const onReady = () => { if (tryMount()) clearWait(); };
+      window.addEventListener(readyEvent, onReady, { once: true });
+      const poll = setInterval(() => { if (tryMount()) clearWait(); }, 120);
+      const stopPoll = setTimeout(clearWait, 8000);
+      waitCleanup = () => {
+        clearInterval(poll);
+        clearTimeout(stopPoll);
+        window.removeEventListener(readyEvent, onReady);
+      };
+    };
+    const reclaim = () => {
+      clearWait();
+      clearReclaim();
+      if (mountCleanup) mountCleanup();
+      mountCleanup = null;
+      mounted = false;
+    };
+    const scheduleReclaim = () => {
+      clearWait();
+      if (!mounted || reclaimTimer) return;
+      reclaimTimer = setTimeout(reclaim, reclaimDelay);
+    };
+
+    if (typeof IntersectionObserver === "undefined") {
+      armReadyMount();
+      return () => {
+        cancelled = true;
+        reclaim();
+      };
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) armReadyMount();
+      else scheduleReclaim();
+    }, { rootMargin, threshold: 0 });
+    io.observe(node);
+
+    return () => {
+      cancelled = true;
+      io.disconnect();
+      reclaim();
+    };
+  }, []);
+}
+
 // section heading with eyebrow + serif title (italic accent supported via <em>)
 function SectionHead({ index, eyebrow, title, children }) {
   const ref = useReveal();
@@ -88,6 +170,7 @@ function UnderAuditStat({ label, dark = false }) {
 }
 
 window.useReveal = useReveal;
+window.useR3FVisibilityMount = useR3FVisibilityMount;
 window.SectionHead = SectionHead;
 window.AgentMark = AgentMark;
 window.UnderAuditStat = UnderAuditStat;
