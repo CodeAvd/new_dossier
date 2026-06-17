@@ -181,7 +181,7 @@
 }
 .av-herogl__readout .k {
   font-size: 10px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-faint);
 }

@@ -15,7 +15,7 @@ function About() {
           <div className="av-card" style={{ padding: 26, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "18px 14px", alignSelf: "start" }}>
             {D.about.facts.map((f, i) => (
               <div key={i} style={{ display: "flex", flexDirection: "column", gap: 5 }}>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-faint)" }}>{f.k}</span>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-faint)" }}>{f.k}</span>
                 <span style={{ fontFamily: "var(--font-sans)", fontSize: 15, fontWeight: 600, color: "var(--text-strong)" }}>{f.v}</span>
               </div>
             ))}

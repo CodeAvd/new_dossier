@@ -247,7 +247,7 @@ section[id] { scroll-margin-top: 90px; }
    ============================================================ */
 .av-stack { display: grid; grid-template-columns: 1fr; gap: 26px; }
 @media (min-width: 760px) { .av-stack { grid-template-columns: repeat(3, 1fr); } }
-.av-stack__col h4 { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 16px; }
+.av-stack__col h4 { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 16px; }
 .av-stack__list { display: flex; flex-wrap: wrap; gap: 9px; }
 .av-marquee { margin-top: clamp(2.5rem, 5vw, 3.5rem); overflow: hidden; -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
 .av-marquee__track { display: flex; gap: 18px; width: max-content; animation: marquee 26s linear infinite; }
@@ -381,7 +381,7 @@ section[id] { scroll-margin-top: 90px; }
 .av-contact__links { display: flex; flex-direction: column; gap: 12px; }
 .av-clink { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--text-inverse) 7%, transparent); border: 1px solid color-mix(in srgb, var(--text-inverse) 12%, transparent); color: var(--text-inverse); text-decoration: none; transition: background var(--dur-base), transform var(--dur-base) var(--ease-spring); }
 .av-clink:hover { background: color-mix(in srgb, var(--text-inverse) 13%, transparent); transform: translateX(4px); }
-.av-clink__l { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6; }
+.av-clink__l { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; }
 .av-clink__h { font-family: var(--font-sans); font-size: 16px; font-weight: 600; }
 
 .av-footer { padding: 40px 0 60px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; border-top: 1px solid var(--divider); margin-top: var(--section-y); }
