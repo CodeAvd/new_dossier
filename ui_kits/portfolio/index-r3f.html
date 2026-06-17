@@ -19,6 +19,17 @@
   } catch (e) {}
 </script>
 
+<!-- Fonts (ARB-59): warm the Google CDN connections, then load the family sheet
+     as an early <link> in the head so it is discovered immediately instead of
+     late, behind styles.css -> @import tokens/fonts.css. The href is byte-identical
+     to that @import URL, so the browser dedupes (no double fetch) and opsz +
+     display=swap are unchanged. The @import stays in tokens/fonts.css for the other
+     pages that load it; here the early <link> + preconnect kill the FOUT/CLS risk
+     on the Urbanist-900 hero. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Urbanist:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
 <!-- Resource hints (pure file-edit slice toward ARB-88's waterfall/LCP goal;
      the full Vite/esbuild ship build remains out-of-environment, see ARB-88).
      Warm the CDN connections, then modulepreload the 8 pinned R3F packages so
