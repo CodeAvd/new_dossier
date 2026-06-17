@@ -95,10 +95,11 @@ const CONF_PER = SMALL ? 7 : 11;
 const CONF_COLORS = ["#eaa1ac", "#e8b35e", "#7bd0ad", "#fdf3e3"]; // blush / honey / mint / cream
 const confetti = [];
 for (let i = 0; i < CONFETTI_N; i++) {
-  confetti.push({ active: false, x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, rx: 0, ry: 0, rz: 0, vrx: 0, vry: 0, vrz: 0, life: 0, max: 1, scale: 0.1, col: 0 });
+  confetti.push({ active: false, x: 0, y: 0, z: 0, vx: 0, vy: 0, vz: 0, rx: 0, ry: 0, rz: 0, vrx: 0, vry: 0, vrz: 0, life: 0, max: 1, scale: 0.1, col: 0, colorDirty: false });
 }
 const _cObj = new THREE.Object3D();
 const _cCol = new THREE.Color();
+let confettiColorDirty = false;
 function spawnConfetti(cx, cy, cz, n) {
   let spawned = 0;
   for (let i = 0; i < confetti.length && spawned < n; i++) {
@@ -118,6 +119,7 @@ function spawnConfetti(cx, cy, cz, n) {
     c.life = 0; c.max = 0.85 + Math.random() * 0.55;
     c.scale = 0.085 + Math.random() * 0.06;
     c.col = (Math.random() * CONF_COLORS.length) | 0;
+    c.colorDirty = true;
     spawned++;
   }
 }
@@ -173,7 +175,11 @@ function resetSim() {
   A.done = 0; A.stamped = false; A.stampFired = false; A.badgeT = 0;
   A.snapHeld = false; A.clickReq = false; A.wiggle = 0;
   A.blinking = false; A.blinkP = 0; A.blinkT = 2.4;
-  for (let i = 0; i < confetti.length; i++) confetti[i].active = false;
+  confettiColorDirty = false;
+  for (let i = 0; i < confetti.length; i++) {
+    confetti[i].active = false;
+    confetti[i].colorDirty = false;
+  }
 }
 
 /* one shared flat-matte material maker (single warm albedo, no specular) */
@@ -441,10 +447,17 @@ function FunAgentScene() {
         _cObj.scale.set(s, s, s);
         _cObj.updateMatrix();
         cm.setMatrixAt(i, _cObj.matrix);
-        cm.setColorAt(i, _cCol.set(CONF_COLORS[c.col]));
+        if (c.colorDirty) {
+          cm.setColorAt(i, _cCol.set(CONF_COLORS[c.col]));
+          c.colorDirty = false;
+          confettiColorDirty = true;
+        }
       }
       cm.instanceMatrix.needsUpdate = true;
-      if (cm.instanceColor) cm.instanceColor.needsUpdate = true;
+      if (confettiColorDirty && cm.instanceColor) {
+        cm.instanceColor.needsUpdate = true;
+        confettiColorDirty = false;
+      }
     }
 
     // soft camera parallax toward the look side, gently CLAMPED so the
