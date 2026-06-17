@@ -41,6 +41,7 @@ function useR3FVisibilityMount(mountRef, options) {
 
     const readyEvent = options.readyEvent;
     const mount = options.mount;
+    const host = options.host ? options.host(node) : node.parentElement;
     const rootMargin = options.rootMargin || "300px 0px";
     const reclaimDelay = options.reclaimDelay || 700;
     let cancelled = false;
@@ -63,10 +64,12 @@ function useR3FVisibilityMount(mountRef, options) {
       if (!cleanup) return false;
       mountCleanup = cleanup;
       mounted = true;
+      if (host && host.classList.contains("av-gl-failed")) host.classList.remove("av-gl-warming");
       return true;
     };
     const armReadyMount = () => {
       clearReclaim();
+      if (host && !mounted) host.classList.add("av-gl-warming");
       if (tryMount()) { clearWait(); return; }
       clearWait();
       const onReady = () => { if (tryMount()) clearWait(); };
@@ -85,6 +88,7 @@ function useR3FVisibilityMount(mountRef, options) {
       if (mountCleanup) mountCleanup();
       mountCleanup = null;
       mounted = false;
+      if (host) host.classList.remove("av-gl-warming");
     };
     const scheduleReclaim = () => {
       clearWait();

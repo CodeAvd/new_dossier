@@ -20,6 +20,7 @@ function FunAgent() {
 
   window.useR3FVisibilityMount(mountRef, {
     readyEvent: "avr3f-funagent-ready",
+    host: (node) => node.closest(".av-funagent__viz"),
     mount: (node) => window.AVR3F_FUNAGENT && window.AVR3F_FUNAGENT.mountFunAgent(node, {}),
   });
 

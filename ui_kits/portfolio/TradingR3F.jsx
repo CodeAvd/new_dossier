@@ -10,6 +10,7 @@ function TradingR3F() {
 
   window.useR3FVisibilityMount(mountRef, {
     readyEvent: "avr3f-trading-ready",
+    host: (node) => node.closest(".av-tradinggl__viz"),
     mount: (node) => window.AVR3F_TRADING && window.AVR3F_TRADING.mountTrading(node, {
       equity: D.equity,
       signals: D.signals,

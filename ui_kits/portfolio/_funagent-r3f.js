@@ -822,6 +822,7 @@ function mountFunAgent(container, opts) {
           // ARB-49: surface the on-brand fallback (incl. the static "case approved" card)
           // on a mid-session context loss, and self-heal when the context returns.
           const host = container.closest(".av-funagent__viz") || container.parentElement;
+          if (host) host.classList.remove("av-gl-warming");
           const cv = state.gl.domElement;
           cv.addEventListener("webglcontextlost", (e) => {
             e.preventDefault();
@@ -855,7 +856,12 @@ function mountFunAgent(container, opts) {
     if (document.visibilityState !== "visible") {
       try { window.dispatchEvent(new Event("resize")); } catch (e) {}
     }
-    if (++kicks < KICK_CAP) kickTimer = setTimeout(forceMeasure, 120);
+    if (++kicks < KICK_CAP) {
+      kickTimer = setTimeout(forceMeasure, 120);
+    } else if (!window.__r3fFunAgent) {
+      const host = container.closest(".av-funagent__viz") || container.parentElement;
+      if (host) { host.classList.add("av-gl-failed"); host.classList.remove("av-gl-warming"); }
+    }
   };
   kickTimer = setTimeout(forceMeasure, 0);
 

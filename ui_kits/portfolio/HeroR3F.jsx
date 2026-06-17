@@ -8,6 +8,7 @@ function HeroR3F() {
 
   window.useR3FVisibilityMount(mountRef, {
     readyEvent: "avr3f-ready",
+    host: (node) => node.closest(".av-herogl"),
     mount: (node) => window.AVR3F && window.AVR3F.mountHero(node, {}),
   });
 
