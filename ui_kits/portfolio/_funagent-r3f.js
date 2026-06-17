@@ -182,14 +182,28 @@ function resetSim() {
   }
 }
 
-/* one shared flat-matte material maker (single warm albedo, no specular) */
+/* one shared flat-matte material per warm-palette color (no specular) */
+const matteMaterials = new Map();
+function sharedMatte(color) {
+  const key = color.getHexString();
+  let mat = matteMaterials.get(key);
+  if (!mat) {
+    mat = new THREE.MeshStandardMaterial({
+      color,
+      roughness: 1,
+      metalness: 0,
+      flatShading: false,
+    });
+    matteMaterials.set(key, mat);
+  }
+  return mat;
+}
 function matte(color) {
-  return h("meshStandardMaterial", {
-    color,
-    roughness: 1,
-    metalness: 0,
-    flatShading: false,
-  });
+  return h("primitive", { object: sharedMatte(color), attach: "material" });
+}
+function disposeMatteMaterials() {
+  matteMaterials.forEach((mat) => mat.dispose());
+  matteMaterials.clear();
 }
 
 /* a single case-card (paper + optional printed lines) */
@@ -839,6 +853,7 @@ function mountFunAgent(container, opts) {
   return function cleanup() {
     if (kickTimer) clearTimeout(kickTimer);
     try { root.unmount(); } catch (e) {}
+    disposeMatteMaterials();
     if (window.__r3fFunAgent) delete window.__r3fFunAgent;
   };
 }
