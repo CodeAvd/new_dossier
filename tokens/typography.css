@@ -20,8 +20,7 @@
   --fw-black:    900; /* @kind other */ /* urbanist hero weight */
 
   /* fluid display sizes (clamp: min, vw, max) */
-  --fs-display-2xl: clamp(3.25rem, 1.8rem + 6.4vw, 6.5rem);  /* @kind other */
-  --fs-display-xl:  clamp(2.5rem, 1.5rem + 4.4vw, 4.5rem);   /* @kind other */
+  --fs-display-2xl: clamp(3.4rem, 9vw, 7.4rem);              /* live R3F hero */
   --fs-display-lg:  clamp(2rem, 1.3rem + 3vw, 3.25rem);      /* @kind other */
   --fs-display-md:  clamp(1.65rem, 1.2rem + 2vw, 2.5rem);    /* @kind other */
   /* ARB-54: fluid serif ladder — every serif level sits on the system (no raw px).
