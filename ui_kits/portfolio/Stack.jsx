@@ -13,7 +13,7 @@ function Stack() {
   return (
     <section className="av-section av-section--subtle" id="stack">
       <div className="container">
-        <window.SectionHead index="06" eyebrow="stack" title="the tools i <em>reach</em> for." />
+        <window.SectionHead index="06" eyebrow="stack" title="the tools i reach for." />
         <div className="av-stack reveal" ref={ref}>
           {cols.map((c) => (
             <div className="av-stack__col" key={c.h}>

@@ -6,7 +6,7 @@ function Experience() {
   return (
     <section className="av-section" id="experience">
       <div className="container">
-        <window.SectionHead index="05" eyebrow="experience" title="qa brain, <em>builder</em> hands." />
+        <window.SectionHead index="05" eyebrow="experience" title="qa brain, builder hands." />
         <div className="av-timeline reveal" ref={ref}>
           {D.experience.map((e, i) => (
             <div className="av-tl" key={i}>

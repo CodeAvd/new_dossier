@@ -95,7 +95,7 @@ function TradingR3F() {
             <span className="av-sec-num" style={{ color: "var(--spark)" }}>04</span> the quant half
           </div>
           <h2 className="av-trading__title">
-            tools that <em>find</em> the edge &mdash; and prove it.
+            tools that find the edge &mdash; and prove it.
           </h2>
           {/* TODO(metrics): copy is honest-schematic. The 3D surface is a
               REPRESENTATIVE shape, not real P&L. Only restore "live book /
