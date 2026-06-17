@@ -283,13 +283,19 @@ section[id] { scroll-margin-top: 90px; }
 @media (min-width: 760px) { .av-stack { grid-template-columns: repeat(3, 1fr); } }
 .av-stack__col h4 { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 16px; }
 .av-stack__list { display: flex; flex-wrap: wrap; gap: 9px; }
-.av-marquee { margin-top: clamp(2.5rem, 5vw, 3.5rem); overflow: hidden; -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-.av-marquee__track { display: flex; gap: 18px; width: max-content; animation: marquee 26s linear infinite; }
+.av-marquee { --marquee-duration: 26s; --marquee-boost: 0; --marquee-sep-opacity: 0.72; --marquee-sep-scale: 1; margin-top: clamp(2.5rem, 5vw, 3.5rem); overflow: hidden; -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.av-marquee__track { display: flex; gap: 18px; width: max-content; animation: marquee var(--marquee-duration) linear infinite; }
 .av-marquee:hover .av-marquee__track { animation-play-state: paused; }
-.av-marquee__item { font-family: var(--font-serif-display); font-style: italic; font-size: 30px; color: var(--text-faint); white-space: nowrap; display: flex; align-items: center; gap: 18px; }
-.av-marquee__item::after { content: "·"; color: var(--accent); }
+.av-marquee__item { font-family: var(--font-serif-display); font-style: italic; font-size: 30px; color: var(--text-faint); white-space: nowrap; display: flex; align-items: center; gap: 18px; transform-origin: center; transition: color .3s var(--ease-out), transform .3s var(--ease-out); }
+.av-marquee__item:hover { color: var(--accent); transform: translateY(-2px) scale(1.04); }
+.av-marquee__item::after { content: "·"; color: var(--accent); opacity: var(--marquee-sep-opacity); transform: scale(var(--marquee-sep-scale)); transition: opacity .3s var(--ease-out), transform .3s var(--ease-out); }
+.av-marquee__item:hover::after { opacity: 0.55; transform: translateX(2px) scale(0.82); }
 @keyframes marquee { to { transform: translateX(-50%); } }
-@media (prefers-reduced-motion: reduce) { .av-marquee__track { animation: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .av-marquee__track { animation: none; }
+  .av-marquee__item { transition: color var(--dur-base) var(--ease-out); }
+  .av-marquee__item:hover { transform: none; }
+}
 
 /* ============================================================
    TRADING — holographic data band
