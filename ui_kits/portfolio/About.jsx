@@ -5,7 +5,7 @@ function About() {
   return (
     <section className="av-section" id="about">
       <div className="container">
-        <window.SectionHead index="01" eyebrow="about" title="i don't trust a system <em>until it proves itself.</em>" />
+        <window.SectionHead index="01" eyebrow="about" title="i don&rsquo;t trust a system <em>until it proves itself.</em>" />
         <div className="reveal av-about-grid" ref={ref}>
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {D.about.body.map((p, i) => (

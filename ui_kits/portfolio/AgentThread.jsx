@@ -12,7 +12,7 @@ function AgentThread() {
     { id: "funagent",   name: "the auditor",        meta: "the agent itself, working its inbox on screen" },
     { id: "trading",    name: "the book",           meta: "the quant half — every signal ships with its backtest" },
     { id: "experience", name: "the track record",   meta: "qa → quant → agents, in order" },
-    { id: "contact",    name: "the sign-off",       meta: "hand the agent your system; it'll prove it" },
+    { id: "contact",    name: "the sign-off",       meta: "hand the agent your system; it’ll prove it" },
   ]), []);
 
   const [active, setActive] = React.useState(0);

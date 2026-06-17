@@ -12,7 +12,7 @@ function Projects() {
   return (
     <section className="av-section av-section--subtle" id="work">
       <div className="container">
-        <window.SectionHead index="02" eyebrow="the agent's case files" title="things that back their own verdicts.">
+        <window.SectionHead index="02" eyebrow="the agent’s case files" title="things that back their own verdicts.">
           four shipped tools, certified the same way: the agent links every
           verdict to its source or its backtest.
         </window.SectionHead>

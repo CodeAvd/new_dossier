@@ -11,7 +11,7 @@ function Contact() {
           <span className="av-blob" style={{ width: 240, height: 240, bottom: -120, left: -60, background: "radial-gradient(circle at 40% 40%, var(--mauve), var(--blush-deep))", opacity: 0.3 }} />
           <div className="av-contact__inner">
             <div>
-              <h2 className="av-contact__title">let's build something that <em>proves itself.</em></h2>
+              <h2 className="av-contact__title">let&rsquo;s build something that <em>proves itself.</em></h2>
               <p className="av-contact__blurb">{D.contact.blurb}</p>
               <div style={{ marginTop: 30 }}>
                 <Button variant="primary" size="lg" as="a" href={"mailto:" + D.contact.email}>send a hard problem</Button>

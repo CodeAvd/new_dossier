@@ -140,6 +140,7 @@
   line-height: 1.55; /* ARB-80: was 1.7 — body-copy leading diluted the hero */
   color: var(--ink-600);
   max-width: var(--measure-lead, 48ch); /* ARB-80: was 50ch — match the section leads; ARB-81: tokenized */
+  hanging-punctuation: first allow-end last;
 }
 /* ARB-80: the leading "//" reads as a deliberate code-comment (the agent voice),
    not a stray character, by tinting it as a muted comment rather than body ink. */

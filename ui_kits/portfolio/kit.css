@@ -203,13 +203,14 @@ section[id] { scroll-margin-top: 90px; }
 .av-sec-head { max-width: 720px; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
 .av-sec-eyebrow { display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 18px; }
 .av-sec-num { color: var(--accent); }
-.av-sec-title { font-family: var(--font-serif-display); font-weight: 500; font-size: var(--fs-display-lg); line-height: 1.1; letter-spacing: -0.02em; color: var(--text-strong); }
+.av-sec-title { font-family: var(--font-serif-display); font-weight: 500; font-size: var(--fs-display-lg); line-height: clamp(1.04em, calc(1.13em - 0.6vw), 1.1em); letter-spacing: -0.02em; color: var(--text-strong); hanging-punctuation: first allow-end last; }
 .av-sec-title em { font-style: italic; font-weight: 400; color: var(--accent); }
-.av-sec-lead { margin-top: 18px; font-size: var(--fs-lg); line-height: 1.6; color: var(--text-body); max-width: var(--measure-lead, 48ch); }
+.av-sec-lead { margin-top: 18px; font-size: var(--fs-lg); line-height: 1.6; color: var(--text-body); max-width: var(--measure-lead, 48ch); hanging-punctuation: first allow-end last; }
 
 /* ---- about ---- */
 .av-about-grid { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 3.5rem); align-items: start; }
 @media (min-width: 860px) { .av-about-grid { grid-template-columns: 1.4fr 0.9fr; } }
+.av-about-grid p { hanging-punctuation: first allow-end last; }
 
 /* ARB-70: 2x2 fact spec-sheet. Gap collapses to 0 so a single token hairline
    (not a doubled line across an empty gap) divides the rows/cols; spacing moves
@@ -304,9 +305,9 @@ section[id] { scroll-margin-top: 90px; }
 .av-trading__bg { position: absolute; inset: 0; pointer-events: none; }
 .av-trading__inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 5vw, 4rem); align-items: center; }
 @media (min-width: 920px) { .av-trading__inner { grid-template-columns: 0.95fr 1.05fr; } }
-.av-trading__title { font-family: var(--font-serif-display); font-weight: 500; font-size: var(--fs-display-md); line-height: 1.1; letter-spacing: -0.02em; color: #fff; max-width: 16ch; }
+.av-trading__title { font-family: var(--font-serif-display); font-weight: 500; font-size: var(--fs-display-md); line-height: clamp(1.04em, calc(1.12em - 0.45vw), 1.1em); letter-spacing: -0.02em; color: #fff; max-width: 16ch; hanging-punctuation: first allow-end last; }
 .av-trading__title em { font-style: italic; font-weight: 400; color: var(--spark); }
-.av-trading__lead { margin-top: 18px; font-size: var(--fs-lg); line-height: 1.6; color: color-mix(in srgb, var(--holo-text) 80%, transparent); max-width: var(--measure-lead, 48ch); }
+.av-trading__lead { margin-top: 18px; font-size: var(--fs-lg); line-height: 1.6; color: color-mix(in srgb, var(--holo-text) 80%, transparent); max-width: var(--measure-lead, 48ch); hanging-punctuation: first allow-end last; }
 .av-trading__stats { margin-top: 30px; display: flex; gap: 36px; flex-wrap: wrap; }
 .av-trading__stats .av-stat__value { color: #fff; }
 .av-trading__stats .av-stat__unit { color: var(--spark); }
@@ -340,9 +341,9 @@ section[id] { scroll-margin-top: 90px; }
 .av-funagent__bg { position: absolute; inset: 0; pointer-events: none; }
 .av-funagent__inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 5vw, 4rem); align-items: center; }
 @media (min-width: 920px) { .av-funagent__inner { grid-template-columns: 0.95fr 1.05fr; } }
-.av-funagent__title { font-family: var(--font-serif-display); font-weight: 500; font-size: var(--fs-display-md); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink-900); max-width: 16ch; }
+.av-funagent__title { font-family: var(--font-serif-display); font-weight: 500; font-size: var(--fs-display-md); line-height: clamp(1.04em, calc(1.12em - 0.45vw), 1.1em); letter-spacing: -0.02em; color: var(--ink-900); max-width: 16ch; hanging-punctuation: first allow-end last; }
 .av-funagent__title em { font-style: italic; font-weight: 400; color: var(--terra-600); }
-.av-funagent__lead { margin-top: 18px; font-size: var(--fs-lg); line-height: 1.6; color: var(--ink-600); max-width: var(--measure-lead, 48ch); }
+.av-funagent__lead { margin-top: 18px; font-size: var(--fs-lg); line-height: 1.6; color: var(--ink-600); max-width: var(--measure-lead, 48ch); hanging-punctuation: first allow-end last; }
 .av-funagent__viz {
   /* borderless / full-bleed: NO frame, ring, radius, or drop-shadow — the
      canvas reads as a continuous surface with the section's warm gradient
@@ -429,9 +430,9 @@ section[id] { scroll-margin-top: 90px; }
 .av-contact__card .av-blob { z-index: 0; }
 .av-contact__inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr; gap: 38px; }
 @media (min-width: 860px) { .av-contact__inner { grid-template-columns: 1.1fr 0.9fr; align-items: center; } }
-.av-contact__title { font-family: var(--font-serif-display); font-weight: 500; font-size: var(--fs-display-md); line-height: 1.1; letter-spacing: -0.02em; color: var(--text-inverse); }
+.av-contact__title { font-family: var(--font-serif-display); font-weight: 500; font-size: var(--fs-display-md); line-height: clamp(1.04em, calc(1.12em - 0.45vw), 1.1em); letter-spacing: -0.02em; color: var(--text-inverse); hanging-punctuation: first allow-end last; }
 .av-contact__title em { font-style: italic; font-weight: 400; color: var(--terra-400); }
-.av-contact__blurb { margin-top: 18px; font-size: var(--fs-lg); line-height: 1.55; color: color-mix(in srgb, var(--text-inverse) 78%, transparent); max-width: var(--measure-lead, 48ch); }
+.av-contact__blurb { margin-top: 18px; font-size: var(--fs-lg); line-height: 1.55; color: color-mix(in srgb, var(--text-inverse) 78%, transparent); max-width: var(--measure-lead, 48ch); hanging-punctuation: first allow-end last; }
 .av-contact__links { display: flex; flex-direction: column; gap: 12px; }
 .av-clink { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--text-inverse) 7%, transparent); border: 1px solid color-mix(in srgb, var(--text-inverse) 12%, transparent); color: var(--text-inverse); text-decoration: none; transition: background var(--dur-base), transform var(--dur-base) var(--ease-spring); }
 .av-clink:hover { background: color-mix(in srgb, var(--text-inverse) 13%, transparent); transform: translateX(4px); }

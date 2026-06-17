@@ -32,7 +32,7 @@ window.AV_DATA = {
   stats: [
     { value: "—", unit: "tbd", label: "citation recall" },
     { value: "—", unit: "tbd", label: "sharpe · live" },
-    { value: "—", unit: "tbd", label: "docs qa'd" },
+    { value: "—", unit: "tbd", label: "docs qa’d" },
     { value: "—", unit: "tbd", label: "p50 latency" },
   ],
   /* trading — THE swap-in seam for the 3D edge terrain.
@@ -65,7 +65,7 @@ window.AV_DATA = {
   },
   about: {
     body: [
-      "i came up through qa, so i don't trust a system until it can prove itself. evidence over vibes — every agent i ship links its claims to a source span, and every verdict cites the line it stands on.",
+      "i came up through qa, so i don’t trust a system until it can prove itself. evidence over vibes — every agent i ship links its claims to a source span, and every verdict cites the line it stands on.",
       "now i build tools that back their own conclusions: fun-agent (an autonomous qa assistant), polyKalshi (cross-market arbitrage), jarvis (agent orchestration), and hr-breaker (an agentic data pipeline). file-first, local-first, reproducible by default.",
     ],
     facts: [

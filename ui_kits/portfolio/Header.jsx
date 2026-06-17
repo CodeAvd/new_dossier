@@ -98,7 +98,7 @@ function Header() {
           ))}
         </div>
         <ThemeToggle />
-        <Button variant="primary" size="sm" onClick={(e) => go("contact", e)}>let's talk</Button>
+        <Button variant="primary" size="sm" onClick={(e) => go("contact", e)}>let&rsquo;s talk</Button>
       </nav>
     </header>
 
