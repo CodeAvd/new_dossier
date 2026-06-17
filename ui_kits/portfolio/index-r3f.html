@@ -64,10 +64,10 @@
 }
 </script>
 
-<!-- UMD React for the Babel-transpiled site shell (separate root from the R3F mounts) -->
+<!-- UMD React for the precompiled site shell (separate root from the R3F mounts).
+     ARB-103 owns consolidating this with the esm.sh React runtime. -->
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script src="../../_ds_bundle.js"></script>
 <script src="data.js"></script>
 
@@ -81,39 +81,6 @@
 <body>
 <div class="av-site av-grain av-one-accent" id="root"></div>
 
-<script type="text/babel" src="av-utils.jsx"></script>
-<script type="text/babel" src="Header.jsx"></script>
-<script type="text/babel" src="HeroR3F.jsx"></script>
-<script type="text/babel" src="About.jsx"></script>
-<script type="text/babel" src="Projects.jsx"></script>
-<script type="text/babel" src="FunAgent.jsx"></script>
-<script type="text/babel" src="TradingR3F.jsx"></script>
-<script type="text/babel" src="Experience.jsx"></script>
-<script type="text/babel" src="Stack.jsx"></script>
-<script type="text/babel" src="Contact.jsx"></script>
-<script type="text/babel" src="AgentThread.jsx"></script>
-<script type="text/babel" data-presets="react">
-  function App() {
-    return (
-      <React.Fragment>
-        <window.Header />
-        <main>
-          <window.HeroR3F />
-          <window.About />
-          <window.Projects />
-          <window.FunAgent />
-          <window.TradingR3F />
-          <window.Experience />
-          <window.Stack />
-          <window.Contact />
-        </main>
-        <window.AgentThread />
-      </React.Fragment>
-    );
-  }
-  const mount = () => ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-  if (window.Header && window.HeroR3F && window.FunAgent && window.TradingR3F && window.Contact) mount();
-  else window.addEventListener("load", mount);
-</script>
+<script src="app-r3f.js"></script>
 </body>
 </html>
