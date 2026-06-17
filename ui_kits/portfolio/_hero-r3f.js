@@ -318,6 +318,12 @@ function Driver({ container }) {
     }
 
     // pointer drives the field only while the pointer is over the hero canvas.
+    let magnetTimer = null;
+    const settleMagnet = () => {
+      magnetTimer = null;
+      sim.ptr.tactive = 1;
+      invalidate();
+    };
     const onMove = (e) => {
       const rect = container.getBoundingClientRect();
       let nx = (e.clientX - rect.left) / rect.width;
@@ -326,10 +332,17 @@ function Driver({ container }) {
       ny = Math.max(-0.12, Math.min(1.12, ny));
       sim.ptr.tx = (nx - 0.5) * SPAN_X;
       sim.ptr.tz = (ny - 0.5) * SPAN_Z + Z0;
-      sim.ptr.tactive = 1;
+      sim.ptr.tactive = 1.12;
+      if (magnetTimer) clearTimeout(magnetTimer);
+      magnetTimer = setTimeout(settleMagnet, 110);
       invalidate();
     };
-    const onLeave = () => { sim.ptr.tactive = 0; invalidate(); };
+    const onLeave = () => {
+      if (magnetTimer) clearTimeout(magnetTimer);
+      magnetTimer = null;
+      sim.ptr.tactive = 0;
+      invalidate();
+    };
     const onVis = () => { if (document.visibilityState === "visible") pump(); };
     const onResize = () => pump();
 
@@ -359,6 +372,7 @@ function Driver({ container }) {
       alive = false;
       if (rafId) cancelAnimationFrame(rafId);
       timers.forEach(clearTimeout);
+      if (magnetTimer) clearTimeout(magnetTimer);
       container.removeEventListener("pointermove", onMove);
       container.removeEventListener("pointerleave", onLeave);
       document.removeEventListener("visibilitychange", onVis);
