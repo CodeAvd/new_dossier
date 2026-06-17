@@ -64,10 +64,6 @@
 }
 </script>
 
-<!-- UMD React for the precompiled site shell (separate root from the R3F mounts).
-     ARB-103 owns consolidating this with the esm.sh React runtime. -->
-<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script src="../../_ds_bundle.js"></script>
 <script src="data.js"></script>
 
@@ -81,6 +77,6 @@
 <body>
 <div class="av-site av-grain av-one-accent" id="root"></div>
 
-<script src="app-r3f.js"></script>
+<script type="module" src="app-r3f.js"></script>
 </body>
 </html>

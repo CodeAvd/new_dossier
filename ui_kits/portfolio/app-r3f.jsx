@@ -1,3 +1,5 @@
+import ReactRuntime from "react";
+import { createRoot } from "react-dom/client";
 import "./av-utils.jsx";
 import "./Header.jsx";
 import "./HeroR3F.jsx";
@@ -9,6 +11,9 @@ import "./Experience.jsx";
 import "./Stack.jsx";
 import "./Contact.jsx";
 import "./AgentThread.jsx";
+
+const React = ReactRuntime;
+window.React = ReactRuntime;
 
 function App() {
   return (
@@ -30,7 +35,7 @@ function App() {
 }
 
 function mount() {
-  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  createRoot(document.getElementById("root")).render(<App />);
 }
 
 if (document.readyState === "loading") {
