@@ -5,6 +5,24 @@
 
 .av-site { background: var(--bg-base); color: var(--text-body); min-height: 100vh; overflow-x: clip; }
 
+/* ARB-57: Newsreader is requested with an opsz axis; pin display-tier serif
+   surfaces to the optical display cut so large heads do not render in text grade. */
+:where(
+  .av-logo span,
+  .av-hero__title,
+  .av-sec-title,
+  .av-proj__title,
+  .av-proj__stat,
+  .av-tl__role h3,
+  .av-marquee__item,
+  .av-trading__title,
+  .av-funagent__title,
+  .av-contact__title
+) {
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 60;
+}
+
 /* ---- reveal ----
    Resting-visible entrance: elements are ALWAYS opacity:1 (never fade 0->1,
    which freezes in the hidden live-preview). They rest 24px low and slide to
