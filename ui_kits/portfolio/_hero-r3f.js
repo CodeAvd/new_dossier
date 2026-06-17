@@ -314,7 +314,7 @@ function Driver({ container }) {
       io.observe(container);
     }
 
-    // pointer drives the field (window-wide, like the vanilla build)
+    // pointer drives the field only while the pointer is over the hero canvas.
     const onMove = (e) => {
       const rect = container.getBoundingClientRect();
       let nx = (e.clientX - rect.left) / rect.width;
@@ -343,7 +343,7 @@ function Driver({ container }) {
     };
     const mqSmall = window.matchMedia ? window.matchMedia("(max-width: 919px)") : null;
 
-    window.addEventListener("pointermove", onMove, { passive: true });
+    container.addEventListener("pointermove", onMove, { passive: true });
     container.addEventListener("pointerleave", onLeave);
     document.addEventListener("visibilitychange", onVis);
     window.addEventListener("resize", onResize);
@@ -356,7 +356,7 @@ function Driver({ container }) {
       alive = false;
       if (rafId) cancelAnimationFrame(rafId);
       timers.forEach(clearTimeout);
-      window.removeEventListener("pointermove", onMove);
+      container.removeEventListener("pointermove", onMove);
       container.removeEventListener("pointerleave", onLeave);
       document.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("resize", onResize);
