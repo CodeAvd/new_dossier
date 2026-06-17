@@ -346,11 +346,15 @@ function Driver({ container }) {
   const { invalidate, advance, setSize, setDpr } = useThree();
   useEffect(() => {
     let alive = true;
+    let lastW = -1, lastH = -1;
     const pump = () => {
       if (!alive) return;
       const w = container.clientWidth || 600;
       const hgt = container.clientHeight || 360;
-      try { setSize(w, hgt); } catch (e) {}
+      if (w !== lastW || hgt !== lastH) {
+        lastW = w; lastH = hgt;
+        try { setSize(w, hgt); } catch (e) {}
+      }
       invalidate();
       try { advance(performance.now()); } catch (e) {}
     };

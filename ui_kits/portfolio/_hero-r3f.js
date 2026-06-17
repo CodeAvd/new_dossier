@@ -269,11 +269,15 @@ function Driver({ container }) {
   useEffect(() => {
     // pump a few synchronous frames so the hidden-tab static preview is composed
     let alive = true;
+    let lastW = -1, lastH = -1;
     const pump = () => {
       if (!alive) return;
       const w = container.clientWidth || 900;
       const hgt = container.clientHeight || 560;
-      try { setSize(w, hgt); } catch (e) {}
+      if (w !== lastW || hgt !== lastH) {
+        lastW = w; lastH = hgt;
+        try { setSize(w, hgt); } catch (e) {}
+      }
       invalidate();
       try { advance(performance.now()); } catch (e) {}
     };
