@@ -88,6 +88,11 @@ function dotTexture() {
   _dotTex = new THREE.CanvasTexture(cv);
   return _dotTex;
 }
+function disposeDotTexture() {
+  if (!_dotTex) return;
+  _dotTex.dispose();
+  _dotTex = null;
+}
 
 function TradingScene({ equity, signals }) {
   const groupRef = useRef(null);
@@ -551,6 +556,7 @@ function mountTrading(container, opts) {
   return function cleanup() {
     if (kickTimer) clearTimeout(kickTimer);
     try { root.unmount(); } catch (e) {}
+    disposeDotTexture();
     if (window.__r3fTrading) delete window.__r3fTrading;
   };
 }
