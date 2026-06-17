@@ -765,7 +765,7 @@ function mountFunAgent(container, opts) {
         gl: {
           alpha: true,
           antialias: true,
-          preserveDrawingBuffer: true,
+          preserveDrawingBuffer: false,
           powerPreference: "high-performance",
         },
         dpr: [1, DPR_CAP],
