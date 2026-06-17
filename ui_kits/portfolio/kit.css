@@ -62,7 +62,7 @@ button:focus-visible {
 }
 .av-logo { display: flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; color: inherit; }
 .av-logo img { width: 34px; height: 34px; }
-.av-logo span { font-family: var(--font-serif-display); font-size: 22px; font-weight: 500; letter-spacing: -0.02em; color: var(--text-strong); }
+.av-logo span { font-family: var(--font-serif-display); font-size: var(--fs-label-lg); font-weight: 500; letter-spacing: -0.02em; color: var(--text-strong); }
 .av-logo .dot { color: var(--accent); }
 .av-header__nav { display: flex; align-items: center; gap: 14px; }
 .av-header__links { display: none; }
@@ -169,7 +169,7 @@ section[id] { scroll-margin-top: 90px; }
 .av-evcard__dot3 i { width: 9px; height: 9px; border-radius: 999px; background: var(--border-strong); }
 .av-evcard__dot3 i:first-child { background: var(--terra-400); }
 .av-evcard__q { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
-.av-evcard__a { font-family: var(--font-serif-display); font-size: 19px; line-height: 1.35; color: var(--text-strong); margin: 10px 0 14px; transform: translateZ(34px); }
+.av-evcard__a { font-family: var(--font-serif-display); font-size: var(--fs-body-lg); line-height: 1.35; color: var(--text-strong); margin: 10px 0 14px; transform: translateZ(34px); }
 .av-evcard__cite { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--accent-press); background: var(--accent-soft); border: 1px solid var(--border-soft); border-radius: var(--radius-sm); padding: 7px 10px; transform: translateZ(52px); box-shadow: var(--shadow-sm); }
 .av-evcard__src { margin-top: 10px; font-family: var(--font-mono); font-size: 10.5px; color: var(--text-faint); line-height: 1.7; transform: translateZ(12px); }
 .av-evcard__src mark { background: var(--terra-100); color: var(--accent-press); border-radius: 3px; padding: 0 2px; }
@@ -220,13 +220,13 @@ section[id] { scroll-margin-top: 90px; }
 .av-proj:hover .av-proj__glow { opacity: 0.6; }
 .av-proj__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; position: relative; z-index: 1; }
 .av-proj__kind { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); }
-.av-proj__title { font-family: var(--font-serif-display); font-size: 30px; font-weight: 500; letter-spacing: -0.02em; color: var(--text-strong); margin-top: 4px; }
+.av-proj__title { font-family: var(--font-serif-display); font-size: var(--fs-display-sm); font-weight: 500; letter-spacing: -0.02em; color: var(--text-strong); margin-top: 4px; }
 .av-proj__year { font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
 .av-proj__blurb { margin-top: 14px; font-size: var(--fs-base); line-height: 1.55; color: var(--text-muted); position: relative; z-index: 1; }
 .av-proj__foot { margin-top: auto; padding-top: 22px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; position: relative; z-index: 1; }
 .av-proj__tags { display: flex; flex-wrap: wrap; gap: 7px; }
 .av-proj__arrow { width: 38px; height: 38px; border-radius: 999px; display: grid; place-items: center; background: var(--bg-sunken); color: var(--text-muted); transition: transform var(--dur-base) var(--ease-spring), background var(--dur-base), color var(--dur-base); flex: none; }
-.av-proj__stat { font-family: var(--font-serif-display); font-size: 28px; font-weight: 500; color: var(--text-strong); letter-spacing: -0.02em; line-height: 1; }
+.av-proj__stat { font-family: var(--font-serif-display); font-size: var(--fs-display-sm); font-weight: 500; color: var(--text-strong); letter-spacing: -0.02em; line-height: 1; }
 
 /* holographic project — the quant/data card (david-hckh.com hologram) */
 .av-proj--holo { background: radial-gradient(130% 120% at 100% 0%, var(--holo-700) 0%, var(--holo-800) 45%, var(--holo-900) 100%); border-color: color-mix(in srgb, var(--spark) 26%, transparent); box-shadow: var(--shadow-lg); }
@@ -252,7 +252,7 @@ section[id] { scroll-margin-top: 90px; }
 .av-tl__period { font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); padding-top: 4px; }
 .av-tl__body { display: flex; flex-direction: column; gap: 6px; }
 .av-tl__role { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-.av-tl__role h3 { font-family: var(--font-serif-display); font-size: 23px; font-weight: 500; color: var(--text-strong); }
+.av-tl__role h3 { font-family: var(--font-serif-display); font-size: var(--fs-h3); font-weight: 500; color: var(--text-strong); }
 .av-tl__org { font-family: var(--font-sans); font-size: 15px; color: var(--accent-press); font-weight: 600; }
 .av-tl__note { font-size: var(--fs-base); color: var(--text-muted); line-height: 1.55; max-width: var(--measure-lead, 48ch); }
 

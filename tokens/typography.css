@@ -24,6 +24,13 @@
   --fs-display-xl:  clamp(2.5rem, 1.5rem + 4.4vw, 4.5rem);   /* @kind other */
   --fs-display-lg:  clamp(2rem, 1.3rem + 3vw, 3.25rem);      /* @kind other */
   --fs-display-md:  clamp(1.65rem, 1.2rem + 2vw, 2.5rem);    /* @kind other */
+  /* ARB-54: fluid serif ladder — every serif level sits on the system (no raw px).
+     MAX anchored to the prior fixed px so desktop is unchanged; only sub-max
+     viewports shrink fluidly. Tune on device. */
+  --fs-display-sm:  clamp(1.5rem, 1.15rem + 1.55vw, 1.875rem);   /* 30px max — proj title + proj stat */
+  --fs-h3:          clamp(1.25rem, 1.07rem + 0.78vw, 1.4375rem); /* 23px max — timeline role */
+  --fs-label-lg:    clamp(1.2rem, 1.07rem + 0.55vw, 1.375rem);   /* 22px max — logo */
+  --fs-body-lg:     clamp(1.0625rem, 0.99rem + 0.33vw, 1.1875rem); /* 19px max — evcard */
 
   /* text sizes (static) */
   --fs-xl:   1.5rem;    /* @kind other */
