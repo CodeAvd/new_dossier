@@ -490,7 +490,7 @@ function FunAgentScene() {
       opacity: 0.34,
       color: "#a9744e",
       resolution: SHADOW_RES,
-      frames: Infinity,
+      frames: 1,
     }),
 
     // ---- the inbox: a small stack of pending case-cards on the left ----
